@@ -44,7 +44,7 @@ export default function Projects() {
       description: t('projects.gitfetch_generatorDesc'),
       tags: [t('projects.tags.React'), t('projects.tags.Typescript'), t('projects.tags.Tailwind')],
       github: "https://github.com/yigitardakidiman/gitfetch-readme-generator",
-      link: "https://gitfetch-readme-generator.vercel.app/",
+      link: "https://gitfetch.kidiman.com/",
       image: "/img/gitfetch.png",
       isOpenSource: true
     }
