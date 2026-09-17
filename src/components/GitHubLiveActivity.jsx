@@ -1,14 +1,18 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { FaGithub } from 'react-icons/fa';
 import { ExternalLink, CalendarDays } from 'lucide-react';
 
 export default function GitHubLiveActivity() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [userStats, setUserStats] = useState(null);
   const [contributionsData, setContributionsData] = useState(null);
-  const [hoveredDay, setHoveredDay] = useState(null);
   const [loading, setLoading] = useState(true);
+
+  const heatmapContainerRef = useRef(null);
+  const tooltipRef = useRef(null);
+  const tooltipDateRef = useRef(null);
+  const tooltipCountRef = useRef(null);
 
   useEffect(() => {
     async function fetchGitHubData() {
@@ -37,14 +41,80 @@ export default function GitHubLiveActivity() {
     fetchGitHubData();
   }, []);
 
-  // Group contributions into 7-day columns (weeks)
-  const weeks = [];
-  if (contributionsData?.contributions) {
+  // Group contributions into 7-day columns (weeks) memoized with localized tooltip labels
+  const weeks = useMemo(() => {
+    if (!contributionsData?.contributions) return [];
     const list = contributionsData.contributions;
+    const isTr = (i18n.language || 'tr').startsWith('tr');
+    const res = [];
     for (let i = 0; i < list.length; i += 7) {
-      weeks.push(list.slice(i, i + 7));
+      const week = list.slice(i, i + 7).map((day) => {
+        let formattedDate = day.date;
+        if (day.date) {
+          const [y, m, d] = day.date.split('-').map(Number);
+          const dateObj = new Date(y, m - 1, d);
+          formattedDate = dateObj.toLocaleDateString(isTr ? 'tr-TR' : 'en-US', {
+            day: 'numeric',
+            month: 'long',
+            year: 'numeric',
+          });
+        }
+        const countText = isTr
+          ? `${day.count} katkı`
+          : `${day.count} ${day.count === 1 ? 'contribution' : 'contributions'}`;
+
+        return {
+          ...day,
+          dateFormatted: formattedDate,
+          countText,
+          tooltip: `${formattedDate}: ${countText}`,
+        };
+      });
+      res.push(week);
     }
-  }
+    return res;
+  }, [contributionsData, i18n.language]);
+
+  const handleGridMouseOver = (e) => {
+    const target = e.target.closest('[data-day]');
+    if (!target || !heatmapContainerRef.current || !tooltipRef.current) return;
+
+    const date = target.getAttribute('data-date');
+    const count = Number(target.getAttribute('data-count') || 0);
+    const countText = target.getAttribute('data-count-text');
+
+    if (tooltipDateRef.current) tooltipDateRef.current.textContent = `${date}:`;
+    if (tooltipCountRef.current) {
+      tooltipCountRef.current.textContent = countText;
+      tooltipCountRef.current.className = count > 0
+        ? 'font-medium text-emerald-400 bg-emerald-500/10 px-1.5 py-0.5 rounded border border-emerald-500/20 text-[10px]'
+        : 'text-zinc-400 text-[10px] px-1 py-0.5';
+    }
+
+    const containerRect = heatmapContainerRef.current.getBoundingClientRect();
+    const targetRect = target.getBoundingClientRect();
+
+    let x = targetRect.left - containerRect.left + targetRect.width / 2;
+    const y = targetRect.top - containerRect.top - 2;
+
+    // Clamp horizontal position so tooltip stays within the card bounds
+    const minX = 70;
+    const maxX = containerRect.width - 70;
+    if (x < minX) x = minX;
+    if (x > maxX) x = maxX;
+
+    tooltipRef.current.style.left = `${x}px`;
+    tooltipRef.current.style.top = `${y}px`;
+    tooltipRef.current.style.opacity = '1';
+    tooltipRef.current.style.transform = 'translate(-50%, -100%) scale(1)';
+  };
+
+  const handleGridMouseLeave = () => {
+    if (tooltipRef.current) {
+      tooltipRef.current.style.opacity = '0';
+      tooltipRef.current.style.transform = 'translate(-50%, -100%) scale(0.95)';
+    }
+  };
 
   const getLevelColor = (level) => {
     switch (level) {
@@ -123,45 +193,43 @@ export default function GitHubLiveActivity() {
       </div>
 
       {/* Heatmap Section */}
-      <div className="pt-3">
+      <div className="pt-3 relative" ref={heatmapContainerRef}>
+        {/* Custom Styled Tooltip */}
+        <div
+          ref={tooltipRef}
+          className="pointer-events-none absolute z-30 opacity-0 -translate-x-1/2 -translate-y-full px-2.5 py-1 rounded-lg bg-zinc-900/95 backdrop-blur-md border border-white/15 text-[11px] font-mono shadow-[0_8px_24px_rgba(0,0,0,0.7)] whitespace-nowrap flex items-center gap-1.5 transition-[opacity,transform] duration-100 ease-out will-change-transform"
+          style={{ left: 0, top: 0, transform: 'translate(-50%, -100%) scale(0.95)' }}
+        >
+          <span ref={tooltipDateRef} className="text-zinc-300 font-medium"></span>
+          <span ref={tooltipCountRef}></span>
+        </div>
+
         {loading ? (
           <div className="h-20 sm:h-28 bg-white/5 rounded-xl animate-pulse flex items-center justify-center text-xs text-textMuted">
             {t('github.loading')}
           </div>
         ) : (
-          <div className="space-y-2.5 sm:space-y-3">
-            {/* Fluid Heatmap Grid - 100% visible on all screen sizes */}
-            <div className="w-full flex justify-between gap-[1px] xs:gap-[1.5px] sm:gap-[2.5px] md:gap-[3px] select-none py-1">
-              {weeks.map((week, wIndex) => (
-                <div key={wIndex} className="flex flex-col flex-1 gap-[1px] xs:gap-[1.5px] sm:gap-[2.5px] md:gap-[3px]">
-                  {week.map((day, dIndex) => (
-                    <button
-                      key={dIndex}
-                      type="button"
-                      onClick={() => setHoveredDay(hoveredDay?.date === day.date ? null : day)}
-                      onMouseEnter={() => setHoveredDay(day)}
-                      onMouseLeave={() => setHoveredDay(null)}
-                      className={`w-full aspect-square rounded-[1px] sm:rounded-[2px] border-[0.5px] sm:border transition-all duration-150 cursor-pointer focus:outline-none focus:ring-1 focus:ring-emerald-400 ${getLevelColor(day.level)}`}
-                      title={t('github.contributionsCount', { count: day.count, date: day.date })}
-                      aria-label={t('github.contributionsCount', { count: day.count, date: day.date })}
-                    />
-                  ))}
-                </div>
-              ))}
-            </div>
-
-            {/* Bottom Status Bar */}
-            <div className="flex items-center justify-between pt-2 border-t border-white/5 text-[11px] text-textMuted font-mono min-h-[1.75rem]">
-              {hoveredDay ? (
-                <span className="text-emerald-400 font-medium bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20 text-[10px] sm:text-[11px]">
-                  {t('github.contributionsCount', { count: hoveredDay.count, date: hoveredDay.date })}
-                </span>
-              ) : (
-                <span className="text-textMuted/50 text-[10px] sm:text-[11px]">
-                  {t('github.hoverHint')}
-                </span>
-              )}
-            </div>
+          <div
+            className="w-full flex justify-between gap-[1px] xs:gap-[1.5px] sm:gap-[2.5px] md:gap-[3px] select-none pt-1 [contain:content]"
+            onMouseMove={handleGridMouseOver}
+            onMouseLeave={handleGridMouseLeave}
+            onTouchStart={handleGridMouseOver}
+          >
+            {weeks.map((week, wIndex) => (
+              <div key={wIndex} className="flex flex-col flex-1 gap-[1px] xs:gap-[1.5px] sm:gap-[2.5px] md:gap-[3px]">
+                {week.map((day, dIndex) => (
+                  <div
+                    key={dIndex}
+                    data-day="true"
+                    data-date={day.dateFormatted}
+                    data-count={day.count}
+                    data-count-text={day.countText}
+                    className={`w-full aspect-square rounded-[1px] sm:rounded-[2px] border-[0.5px] sm:border cursor-pointer ${getLevelColor(day.level)}`}
+                    aria-label={day.tooltip}
+                  />
+                ))}
+              </div>
+            ))}
           </div>
         )}
       </div>
