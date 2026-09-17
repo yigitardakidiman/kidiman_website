@@ -24,6 +24,14 @@ export default function Projects() {
 
   const projectsData = [
     {
+      title: t('projects.simple_banking_system'),
+      description: t('projects.simple_banking_systemDesc'),
+      tags: [t('projects.tags.Python'), t('projects.tags.OOP'), t('projects.tags.DataStructures')],
+      github: "https://github.com/yigitardakidiman/CENG110-Simple-Banking-System",
+      image: "/img/banking.png",
+      isOpenSource: true
+    },
+    {
       title: t('projects.kidimusic_generator'),
       description: t('projects.kidimusic_generatorDesc'),
       tags: [t('projects.tags.Typescript'), t('projects.tags.JavaScript'), t('projects.tags.CSS')],
@@ -47,7 +55,7 @@ export default function Projects() {
       link: "https://gitfetch.kidiman.com/",
       image: "/img/gitfetch.png",
       isOpenSource: true
-    }
+    },
   ];
 
   return (

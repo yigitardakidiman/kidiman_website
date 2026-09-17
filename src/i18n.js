@@ -64,6 +64,8 @@ const resources = {
         "kidimusic_generatorDesc": "A web application that generates custom music tracks from text prompts and allows easy audio export.",
         "gitfetch_generator": "GitFetch README Generator",
         "gitfetch_generatorDesc": "A modern web application to generate stylish and interactive GitHub profile READMEs easily.",
+        "simple_banking_system": "Simple Banking System",
+        "simple_banking_systemDesc": "A console-based banking application built with Python using Object-Oriented Programming (OOP) principles and data structures.",
         "comingSoon": "Coming Soon...",
         "liveDemo": "Live Demo",
         "tags": {
@@ -76,7 +78,8 @@ const resources = {
           "Python": "Python",
           "Tailwind": "Tailwind CSS",
           "FileManagement": "File Management",
-          "OOP": "OOP"
+          "OOP": "OOP",
+          "DataStructures": "Data Structures"
         },
         "badges": {
           "openSource": "Open Source"
@@ -212,6 +215,8 @@ const resources = {
         "kidimusic_generatorDesc": "Yapay zeka yönlendirmeleri (prompt) ile özgün müzik parçaları oluşturan ve ses dosyalarını dışa aktaran web uygulaması.",
         "gitfetch_generator": "GitFetch README Generator",
         "gitfetch_generatorDesc": "GitHub profiliniz için şık ve etkileşimli README dosyalarını kolayca oluşturmanızı sağlayan modern web uygulaması.",
+        "simple_banking_system": "Simple Banking System",
+        "simple_banking_systemDesc": "Python, Nesne Yönelimli Programlama (OOP) prensipleri ve temel veri yapıları kullanılarak geliştirilmiş konsol tabanlı bankacılık uygulaması.",
         "comingSoon": "Çok Yakında...",
         "liveDemo": "Canlı Demo",
         "tags": {
@@ -224,7 +229,8 @@ const resources = {
           "Python": "Python",
           "Tailwind": "Tailwind CSS",
           "FileManagement": "Dosya Yönetimi",
-          "OOP": "OOP"
+          "OOP": "OOP",
+          "DataStructures": "Veri Yapıları"
         },
         "badges": {
           "openSource": "Açık Kaynak"

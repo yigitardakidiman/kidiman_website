@@ -31,7 +31,7 @@ export default function ProjectCard({ title, description, tags, link, github, co
           <img
             src={image}
             alt={title}
-            className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
+            className="w-full h-full object-cover object-top"
           />
         ) : (
           <div className="w-full h-full flex items-center justify-center text-textMuted/30">
