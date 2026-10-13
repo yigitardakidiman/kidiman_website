@@ -1,0 +1,169 @@
+%-------------------------
+% Özgeçmiş (LaTeX) - Türkçe Versiyon
+% Yazar : Yiğit Arda Kıdıman
+%-------------------------
+
+\documentclass[letterpaper,10.5pt]{article}
+
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[turkish]{babel}
+\usepackage{tabularx}
+\input{glyphtounicode}
+
+%----------FONT SEÇENEKLERİ----------
+\usepackage[sfdefault]{Inter}
+\usepackage[T1]{fontenc}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Kenar Boşlukları
+\addtolength{\oddsidemargin}{-0.5in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1in}
+\addtolength{\topmargin}{-.5in}
+\addtolength{\textheight}{1.0in}
+
+\urlstyle{same}
+
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Bölüm Formatı
+\titleformat{\section}{
+  \vspace{-5pt}\scshape\raggedright\large\bfseries
+}{}{0em}{}[\color{black}\titlerule \vspace{-4pt}]
+
+\pdfgentounicode=1
+
+%-------------------------
+% Özel Komutlar
+\newcommand{\resumeItem}[1]{
+  \item\small{
+    {#1 \vspace{-2pt}}
+  }
+}
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-2pt}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+      \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-6pt}
+}
+
+\newcommand{\resumeProjectHeading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \small#1 & #2 \\
+    \end{tabular*}\vspace{-6pt}
+}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.15in, label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+
+%-------------------------------------------
+%%%%%%  ÖZGEÇMİŞ BURADA BAŞLAR  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+%----------BAŞLIK----------
+\begin{center}
+    \textbf{\Huge \scshape Yiğit Arda Kıdıman} \\ \vspace{2pt}
+    \small Yazılım Mühendisliği Öğrencisi \& Web Geliştirici \\ \vspace{2pt}
+    \small +90 539 743 5914 $|$ \href{mailto:yigitardakidiman@gmail.com}{\underline{yigitardakidiman@gmail.com}} \\
+    \href{https://kidiman.com}{\underline{kidiman.com}} $|$ 
+    \href{https://linkedin.com/in/yigitardakidiman}{\underline{linkedin.com/in/yigitardakidiman}} $|$ 
+    \href{https://github.com/yigitardakidiman}{\underline{github.com/yigitardakidiman}}
+\end{center}
+
+%-----------EĞİTİM-----------
+\section{Eğitim}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {OSTİM Teknik Üniversitesi}{09/2024 -- Günümüz}
+      {Yazılım Mühendisliği (Lisans) $|$ Genel Not Ortalaması (GPA): 3.41 / 4.00}{Ankara, Türkiye}
+      \resumeItemListStart
+        \resumeItem{\textbf{Temel Dersler:} Nesne Yönelimli Programlama (OOP), Veri Yapıları ve Algoritmalar, Veritabanı Sistemleri, Web Geliştirme}
+      \resumeItemListEnd
+  \resumeSubHeadingListEnd
+
+%-----------TEKNİK YETENEKLER-----------
+\section{Teknik Yetenekler}
+ \begin{itemize}[leftmargin=0.15in, label={}]
+    \small{\item{
+     \textbf{Programlama Dilleri}{: Python, JavaScript, TypeScript, C, HTML5, CSS3} \\
+     \textbf{Frontend}{: React.js, Next.js, Three.js, Tailwind CSS} \\
+     \textbf{Backend}{: Django, Django REST Framework, REST API'ler} \\
+     \textbf{Araçlar \& Veritabanları}{: Supabase, Git, GitHub, Vite, VS Code}
+    }}
+ \end{itemize}
+
+%-----------DENEYİM VE LİDERLİK-----------
+\section{Deneyim \& Liderlik}
+  \resumeSubHeadingListStart
+
+    \resumeSubheading
+      {Volinor Savunma ve Teknoloji A.Ş.}{06/2026 -- Günümüz}
+      {Yazılım Geliştirici (Yarı Zamanlı: 07/2026 -- Günümüz $|$ Stajyer: 06/2026 -- 07/2026)}{Ankara, Türkiye}
+      \resumeItemListStart
+        \resumeItem{3D model veri yönetimi, ürün katalog listelemeleri, kullanıcı kimlik doğrulama ve e-posta servisleri için \textbf{Django REST API uç noktaları} geliştirdim ve bakımını yaptım.}
+        \resumeItem{Şirket ürünlerini web üzerinden sergilemek amacıyla \textbf{React ve Three.js} kullanarak etkileşimli 3D model görüntüleme arayüzleri geliştirdim.}
+        \resumeItem{Versiyon kontrolü, kod inceleme süreçleri ve hata çözümlerinde geliştirme ekibiyle Git üzerinden iş birliği yaptım.}
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {Huawei Student Developers (HSD) OSTIMTech}{10/2025 -- Günümüz}
+      {Proje Komite Başkanı (10/2026 -- Günümüz) $|$ Çekirdek Ekip Üyesi (10/2025 -- 10/2026)}{Ankara, Türkiye}
+      \resumeItemListStart
+        \resumeItem{\textbf{Proje Komite Başkanı} olarak öğrenci yazılım inisiyatiflerini koordine ediyor, topluluk içi teknik etkinlik ve atölye çalışmalarını organize ediyorum.}
+        \resumeItem{28+ çekirdek ekip üyesinin kulüp içi görev dağılımını ve takibini kolaylaştırmak için \textbf{React ve Supabase} ile kulüp yönetim paneli geliştirdim.}
+        \resumeItem{\textbf{60+ katılımcılı} OSTİMTech üniversite hackathon'unun organizasyon süreçlerine ve teknik koordinasyonuna destek sağladım.}
+      \resumeItemListEnd
+
+  \resumeSubHeadingListEnd
+
+%-----------ÖNE ÇIKAN PROJELER-----------
+\section{Öne Çıkan Projeler}
+    \resumeSubHeadingListStart
+      \resumeProjectHeading
+          {\textbf{GitFetch -- README Oluşturucu} $|$ \emph{React, TypeScript, Tailwind CSS}}{\href{https://gitfetch.kidiman.com}{Canlı Demo} $|$ \href{https://github.com/yigitardakidiman/gitfetch-readme-generator}{GitHub}}
+          \resumeItemListStart
+            \resumeItem{Geliştiricilerin canlı önizleme eşliğinde kolayca etkileşimli GitHub profil README dosyaları tasarlayıp temiz Markdown çıktısı alabileceği açık kaynaklı bir web uygulaması geliştirdim.}
+          \resumeItemListEnd
+      \resumeProjectHeading
+          {\textbf{KıdıMusic Generator} $|$ \emph{TypeScript, JavaScript, CSS}}{\href{https://music.kidiman.com}{Canlı Demo} $|$ \href{https://github.com/yigitardakidiman/kidimusic-generator-app}{GitHub}}
+          \resumeItemListStart
+            \resumeItem{Metin yönlendirmeleriyle (prompt) özel müzik parçaları üreten, tarayıcıda anlık oynatma ve ses dosyası indirme imkanı sunan bir web uygulaması geliştirdim.}
+          \resumeItemListEnd
+      \resumeProjectHeading
+          {\textbf{Offline Local RAG Asistanı} $|$ \emph{Python, RAG, Yerel Yapay Zeka}}{\href{https://github.com/yigitardakidiman/microsoft-rag}{GitHub}}
+          \resumeItemListStart
+            \resumeItem{Microsoft Foundry Local ve RAG kalıbı kullanarak, internet bağlantısı olmadan yerel dokümanlar üzerinden soru-cevap yapabilen çevrimdışı bir asistan geliştirdim.}
+          \resumeItemListEnd
+    \resumeSubHeadingListEnd
+
+%-----------SERTİFİKALAR VE DİLLER-----------
+\section{Sertifikalar \& Diller}
+ \begin{itemize}[leftmargin=0.15in, label={}]
+    \small{\item{
+     \textbf{Sertifikalar}{: Python Programlama (BTK Akademi), HTML5 ile Web Geliştirme (BTK Akademi), Git \& GitHub ile Versiyon Kontrolü (BTK Akademi)} \\
+     \textbf{Diller}{: Türkçe (Anadil), İngilizce (Orta Seviye - B1)}
+    }}
+ \end{itemize}
+
+\end{document}

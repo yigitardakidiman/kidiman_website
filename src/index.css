@@ -92,3 +92,16 @@ html {
   -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
 }
 
+.animate-marquee-slow {
+  display: inline-flex;
+  width: max-content;
+  will-change: transform;
+  animation: marquee 38s linear infinite;
+}
+
+.animate-marquee-slow:hover,
+.animate-marquee-slow:focus-within,
+.marquee-wrapper:hover .animate-marquee-slow {
+  animation-play-state: paused !important;
+}
+

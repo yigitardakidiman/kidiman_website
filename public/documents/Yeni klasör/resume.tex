@@ -1,0 +1,171 @@
+%-------------------------
+% Resume in LaTeX
+% Author : Yiğit Arda Kıdıman
+% Based on: Jake Gutierrez's Resume template
+% License : MIT
+%-------------------------
+
+\documentclass[letterpaper,10.5pt]{article}
+
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\input{glyphtounicode}
+
+%----------FONT OPTIONS----------
+\usepackage[sfdefault]{Inter}
+\usepackage[T1]{fontenc}
+
+\pagestyle{fancy}
+\fancyhf{} % clear all header and footer fields
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Adjust margins
+\addtolength{\oddsidemargin}{-0.5in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1in}
+\addtolength{\topmargin}{-.5in}
+\addtolength{\textheight}{1.0in}
+
+\urlstyle{same}
+
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Sections formatting
+\titleformat{\section}{
+  \vspace{-5pt}\scshape\raggedright\large\bfseries
+}{}{0em}{}[\color{black}\titlerule \vspace{-4pt}]
+
+\pdfgentounicode=1
+
+%-------------------------
+% Custom commands
+\newcommand{\resumeItem}[1]{
+  \item\small{
+    {#1 \vspace{-2pt}}
+  }
+}
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-2pt}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+      \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-6pt}
+}
+
+\newcommand{\resumeProjectHeading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \small#1 & #2 \\
+    \end{tabular*}\vspace{-6pt}
+}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.15in, label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+
+%-------------------------------------------
+%%%%%%  RESUME STARTS HERE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+%----------HEADING----------
+\begin{center}
+    \textbf{\Huge \scshape Yiğit Arda Kıdıman} \\ \vspace{2pt}
+    \small Software Engineering Student \& Web Developer \\ \vspace{2pt}
+    \small +90 539 743 5914 $|$ \href{mailto:yigitardakidiman@gmail.com}{\underline{yigitardakidiman@gmail.com}} \\
+    \href{https://kidiman.com}{\underline{kidiman.com}} $|$ 
+    \href{https://linkedin.com/in/yigitardakidiman}{\underline{linkedin.com/in/yigitardakidiman}} $|$ 
+    \href{https://github.com/yigitardakidiman}{\underline{github.com/yigitardakidiman}}
+\end{center}
+
+%-----------EDUCATION-----------
+\section{Education}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {OSTİM Technical University}{09/2024 -- Present}
+      {Bachelor of Science in Software Engineering (GPA: 3.41 / 4.00)}{Ankara, Turkey}
+      \resumeItemListStart
+        \resumeItem{\textbf{Key Coursework:} Object-Oriented Programming (OOP), Data Structures \& Algorithms, Database Systems, Web Development}
+      \resumeItemListEnd
+  \resumeSubHeadingListEnd
+
+%-----------TECHNICAL SKILLS-----------
+\section{Technical Skills}
+ \begin{itemize}[leftmargin=0.15in, label={}]
+    \small{\item{
+     \textbf{Languages}{: Python, JavaScript, TypeScript, C, HTML5, CSS3} \\
+     \textbf{Frontend}{: React.js, Next.js, Three.js, Tailwind CSS} \\
+     \textbf{Backend}{: Django, Django REST Framework, REST APIs} \\
+     \textbf{Tools \& Databases}{: Supabase, Git, GitHub, Vite, VS Code}
+    }}
+ \end{itemize}
+
+%-----------EXPERIENCE-----------
+\section{Experience \& Leadership}
+  \resumeSubHeadingListStart
+
+    \resumeSubheading
+      {Volinor Savunma ve Teknoloji A.Ş.}{06/2026 -- Present}
+      {Software Developer (Part-time: 07/2026 -- Present $|$ Intern: 06/2026 -- 07/2026)}{Ankara, Turkey}
+      \resumeItemListStart
+        \resumeItem{Built and maintained \textbf{Django REST API endpoints} for 3D model data management, product catalog listings, user authentication, and email services.}
+        \resumeItem{Developed interactive 3D model showcase views on the web using \textbf{React and Three.js} for company product displays.}
+        \resumeItem{Collaborated with team members using Git for version control, code reviews, and resolving bug reports.}
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {Huawei Student Developers (HSD) OSTIMTech}{10/2025 -- Present}
+      {Head of Project Committee (10/2026 -- Present) $|$ Core Team Member (10/2025 -- 10/2026)}{Ankara, Turkey}
+      \resumeItemListStart
+        \resumeItem{Serving as \textbf{Head of Project Committee}, coordinating student software initiatives and organizing technical community events.}
+        \resumeItem{Built a club management dashboard using \textbf{React and Supabase} to help 28+ core team members distribute and track club tasks.}
+        \resumeItem{Supported event organization and technical coordination for an OSTIMTech hackathon with \textbf{60+ participants}.}
+      \resumeItemListEnd
+
+  \resumeSubHeadingListEnd
+
+%-----------PROJECTS-----------
+\section{Featured Projects}
+    \resumeSubHeadingListStart
+      \resumeProjectHeading
+          {\textbf{GitFetch -- README Generator} $|$ \emph{React, TypeScript, Tailwind CSS}}{gitfetch.kidiman.com}
+          \resumeItemListStart
+            \resumeItem{Created an open-source web application where developers can quickly design, customize, and preview interactive GitHub profile READMEs and export clean Markdown.}
+          \resumeItemListEnd
+      \resumeProjectHeading
+          {\textbf{KıdıMusic Generator} $|$ \emph{TypeScript, JavaScript, CSS}}{music.kidiman.com}
+          \resumeItemListStart
+            \resumeItem{Built a web application that takes text prompts to generate custom music tracks with in-browser audio playback and easy file export.}
+          \resumeItemListEnd
+      \resumeProjectHeading
+          {\textbf{Offline Local RAG Assistant} $|$ \emph{Python, RAG, Local AI}}{\href{https://github.com/yigitardakidiman/microsoft-rag}{GitHub}}
+          \resumeItemListStart
+            \resumeItem{Developed an offline question-answering assistant using Python, Microsoft Foundry Local, and the RAG pattern for local document retrieval without internet connection.}
+          \resumeItemListEnd
+    \resumeSubHeadingListEnd
+
+%-----------CERTIFICATIONS & LANGUAGES-----------
+\section{Certifications \& Languages}
+ \begin{itemize}[leftmargin=0.15in, label={}]
+    \small{\item{
+     \textbf{Certifications}{: Python Programming (BTK Akademi), Web Development with HTML5 (BTK Akademi), Version Control with Git \& GitHub (BTK Akademi)} \\
+     \textbf{Languages}{: Turkish (Native), English (Intermediate - B1)}
+    }}
+ \end{itemize}
+
+\end{document}

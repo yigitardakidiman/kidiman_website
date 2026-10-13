@@ -5,7 +5,8 @@ import SpotifyNowPlaying from '../components/SpotifyNowPlaying';
 import SEO from '../components/SEO';
 
 export default function About() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const resumeUrl = i18n.language?.startsWith('tr') ? '/documents/resume-tr.pdf' : '/documents/resume.pdf';
 
   const container = {
     hidden: { opacity: 0 },
@@ -46,7 +47,7 @@ export default function About() {
             </p>
           </div>
           <div className="mt-6 pt-4 border-t border-secondary flex justify-center">
-            <a href="/documents/resume.pdf" target="_blank" rel="noreferrer" className="btn-outline flex items-center justify-center gap-2 w-full">
+            <a href={resumeUrl} target="_blank" rel="noreferrer" className="btn-outline flex items-center justify-center gap-2 w-full">
               <FileText size={18} />
               <span>{t('about.myResume')}</span>
             </a>

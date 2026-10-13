@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Yiğit Arda Kıdıman - Resume</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #0f172a;
+      --secondary: #334155;
+      --muted: #64748b;
+      --line: #cbd5e1;
+      --accent: #2563eb;
+      --bg: #ffffff;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      color: var(--primary);
+      background-color: #f1f5f9;
+      font-size: 9.6pt;
+      line-height: 1.4;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Floating Print Button */
+    .no-print-bar {
+      position: fixed;
+      top: 16px;
+      right: 16px;
+      display: flex;
+      gap: 10px;
+      z-index: 1000;
+    }
+
+    .btn-print {
+      background: #2563eb;
+      color: white;
+      border: none;
+      padding: 10px 18px;
+      font-size: 13px;
+      font-weight: 600;
+      border-radius: 8px;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s ease;
+    }
+
+    .btn-print:hover {
+      background: #1d4ed8;
+      transform: translateY(-1px);
+    }
+
+    /* A4 Resume Container */
+    .resume-page {
+      width: 210mm;
+      min-height: 297mm;
+      margin: 20px auto;
+      background: var(--bg);
+      padding: 14mm 16mm;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+      border-radius: 4px;
+    }
+
+    /* Header */
+    header {
+      text-align: center;
+      margin-bottom: 12px;
+      padding-bottom: 10px;
+      border-bottom: 1.5px solid var(--primary);
+    }
+
+    h1.name {
+      font-size: 21pt;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      color: var(--primary);
+      margin-bottom: 3px;
+    }
+
+    .title-sub {
+      font-size: 10.5pt;
+      font-weight: 500;
+      color: var(--secondary);
+      margin-bottom: 7px;
+    }
+
+    .contact-line {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 6px 14px;
+      font-size: 8.8pt;
+      color: var(--secondary);
+    }
+
+    .contact-line a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .contact-line a:hover {
+      color: var(--accent);
+      text-decoration: underline;
+    }
+
+    .dot-sep {
+      color: var(--muted);
+    }
+
+    /* Section Styles */
+    section {
+      margin-bottom: 11px;
+    }
+
+    .section-title {
+      font-size: 10.5pt;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: var(--primary);
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 2px;
+      margin-bottom: 7px;
+    }
+
+    /* Entry Item */
+    .item {
+      margin-bottom: 8px;
+    }
+
+    .item:last-child {
+      margin-bottom: 0;
+    }
+
+    .item-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+
+    .item-title {
+      font-weight: 700;
+      font-size: 9.8pt;
+      color: var(--primary);
+    }
+
+    .item-date {
+      font-size: 8.8pt;
+      color: var(--muted);
+      font-weight: 500;
+      text-align: right;
+      white-space: nowrap;
+    }
+
+    .item-subtitle {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      font-size: 9pt;
+      color: var(--secondary);
+      font-weight: 500;
+      margin-bottom: 3px;
+    }
+
+    .item-role {
+      font-style: italic;
+      color: var(--secondary);
+    }
+
+    .item-location {
+      font-size: 8.6pt;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+
+    /* Lists */
+    ul.bullets {
+      list-style-type: disc;
+      padding-left: 14px;
+      margin-top: 2px;
+    }
+
+    ul.bullets li {
+      font-size: 9.1pt;
+      color: #1e293b;
+      margin-bottom: 2.5px;
+      line-height: 1.36;
+    }
+
+    ul.bullets li strong {
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    /* Skills Grid */
+    .skills-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 9.1pt;
+    }
+
+    .skills-table td {
+      padding: 2px 0;
+      vertical-align: top;
+      line-height: 1.35;
+    }
+
+    .skill-cat {
+      font-weight: 600;
+      color: var(--primary);
+      width: 130px;
+      white-space: nowrap;
+    }
+
+    .skill-list {
+      color: #334155;
+    }
+
+    /* Project Link */
+    .project-links {
+      font-size: 8.5pt;
+      font-weight: normal;
+      margin-left: 6px;
+    }
+
+    .project-links a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .project-links a:hover {
+      text-decoration: underline;
+    }
+
+    /* Print Media Query */
+    @media print {
+      @page {
+        size: A4 portrait;
+        margin: 0;
+      }
+
+      body {
+        background: transparent;
+        font-size: 9.5pt;
+        margin: 0;
+        padding: 0;
+      }
+
+      .no-print-bar {
+        display: none !important;
+      }
+
+      .resume-page {
+        width: 210mm;
+        min-height: 297mm;
+        margin: 0 auto;
+        padding: 11mm 14mm;
+        box-shadow: none;
+        border-radius: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Floating Print Action Button -->
+  <div class="no-print-bar">
+    <button class="btn-print" onclick="window.print()">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="6 9 6 2 18 2 18 9"></polyline>
+        <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+        <rect x="6" y="14" width="12" height="8"></rect>
+      </svg>
+      PDF Olarak Kaydet (Ctrl + P)
+    </button>
+  </div>
+
+  <div class="resume-page">
+    <!-- Header -->
+    <header>
+      <h1 class="name">Yiğit Arda Kıdıman</h1>
+      <div class="title-sub">Software Engineering Student & Web Developer</div>
+      <div class="contact-line">
+        <a href="tel:+905397435914">+90 539 743 5914</a>
+        <span class="dot-sep">•</span>
+        <a href="mailto:yigitardakidiman@gmail.com">yigitardakidiman@gmail.com</a>
+        <span class="dot-sep">•</span>
+        <a href="https://kidiman.com" target="_blank">kidiman.com</a>
+        <span class="dot-sep">•</span>
+        <a href="https://linkedin.com/in/yigitardakidiman" target="_blank">linkedin.com/in/yigitardakidiman</a>
+        <span class="dot-sep">•</span>
+        <a href="https://github.com/yigitardakidiman" target="_blank">github.com/yigitardakidiman</a>
+      </div>
+    </header>
+
+    <!-- Education -->
+    <section>
+      <h2 class="section-title">Education</h2>
+      <div class="item">
+        <div class="item-header">
+          <span class="item-title">OSTİM Technical University</span>
+          <span class="item-date">09/2024 – Present</span>
+        </div>
+        <div class="item-subtitle">
+          <span class="item-role">Bachelor of Science in Software Engineering</span>
+          <span class="item-location">Ankara, Turkey</span>
+        </div>
+        <ul class="bullets">
+          <li><strong>Cumulative GPA:</strong> 3.41 / 4.00</li>
+          <li><strong>Key Coursework:</strong> Object-Oriented Programming (OOP), Data Structures & Algorithms, Database Systems, Web Development</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Technical Skills -->
+    <section>
+      <h2 class="section-title">Technical Skills</h2>
+      <table class="skills-table">
+        <tr>
+          <td class="skill-cat">Languages:</td>
+          <td class="skill-list">Python, JavaScript, TypeScript, C, HTML5, CSS3</td>
+        </tr>
+        <tr>
+          <td class="skill-cat">Frontend:</td>
+          <td class="skill-list">React.js, Next.js, Three.js, Tailwind CSS</td>
+        </tr>
+        <tr>
+          <td class="skill-cat">Backend:</td>
+          <td class="skill-list">Django, Django REST Framework, REST APIs</td>
+        </tr>
+        <tr>
+          <td class="skill-cat">Tools & Databases:</td>
+          <td class="skill-list">Supabase, Git, GitHub, Vite, VS Code</td>
+        </tr>
+      </table>
+    </section>
+
+    <!-- Experience -->
+    <section>
+      <h2 class="section-title">Experience & Leadership</h2>
+      
+      <!-- Volinor -->
+      <div class="item">
+        <div class="item-header">
+          <span class="item-title">Volinor Savunma ve Teknoloji A.Ş.</span>
+          <span class="item-date">06/2026 – Present</span>
+        </div>
+        <div class="item-subtitle">
+          <span class="item-role">Software Developer (Part-time: 07/2026 – Present | Intern: 06/2026 – 07/2026)</span>
+          <span class="item-location">Ankara, Turkey</span>
+        </div>
+        <ul class="bullets">
+          <li>Built and maintained <strong>Django REST API endpoints</strong> for 3D model data management, product catalog listings, user authentication, and email services.</li>
+          <li>Developed interactive 3D model showcase views on the web using <strong>React and Three.js</strong> for company product displays.</li>
+          <li>Collaborated with team members using Git for version control, code reviews, and resolving bug reports.</li>
+        </ul>
+      </div>
+
+      <!-- Huawei Student Developers -->
+      <div class="item">
+        <div class="item-header">
+          <span class="item-title">Huawei Student Developers (HSD) OSTIMTech</span>
+          <span class="item-date">10/2025 – Present</span>
+        </div>
+        <div class="item-subtitle">
+          <span class="item-role">Head of Project Committee (10/2026 – Present) | Core Team Member (10/2025 – 10/2026)</span>
+          <span class="item-location">Ankara, Turkey</span>
+        </div>
+        <ul class="bullets">
+          <li>Serving as <strong>Head of Project Committee</strong>, coordinating student software initiatives and organizing technical community events.</li>
+          <li>Built a club management dashboard using <strong>React and Supabase</strong> to help 28+ core team members distribute and track club tasks.</li>
+          <li>Supported event organization and technical coordination for an OSTIMTech hackathon with <strong>60+ participants</strong>.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Featured Projects -->
+    <section>
+      <h2 class="section-title">Featured Projects</h2>
+
+      <!-- GitFetch -->
+      <div class="item">
+        <div class="item-header">
+          <span class="item-title">GitFetch — README Generator
+            <span class="project-links">
+              [<a href="https://gitfetch.kidiman.com" target="_blank">Live Demo</a>]
+              [<a href="https://github.com/yigitardakidiman/gitfetch-readme-generator" target="_blank">GitHub</a>]
+            </span>
+          </span>
+          <span class="item-date">React, TypeScript, Tailwind CSS</span>
+        </div>
+        <ul class="bullets">
+          <li>Created an open-source web application where developers can quickly design, customize, and preview interactive GitHub profile READMEs and export clean Markdown.</li>
+        </ul>
+      </div>
+
+      <!-- KıdıMusic -->
+      <div class="item">
+        <div class="item-header">
+          <span class="item-title">KıdıMusic Generator
+            <span class="project-links">
+              [<a href="https://music.kidiman.com" target="_blank">Live Demo</a>]
+              [<a href="https://github.com/yigitardakidiman/kidimusic-generator-app" target="_blank">GitHub</a>]
+            </span>
+          </span>
+          <span class="item-date">TypeScript, JavaScript, CSS</span>
+        </div>
+        <ul class="bullets">
+          <li>Built a web application that takes text prompts to generate custom music tracks with in-browser audio playback and easy file export.</li>
+        </ul>
+      </div>
+
+      <!-- Offline Local RAG -->
+      <div class="item">
+        <div class="item-header">
+          <span class="item-title">Offline Local RAG Assistant
+            <span class="project-links">
+              [<a href="https://github.com/yigitardakidiman/microsoft-rag" target="_blank">GitHub</a>]
+            </span>
+          </span>
+          <span class="item-date">Python, RAG, Local AI</span>
+        </div>
+        <ul class="bullets">
+          <li>Developed an offline question-answering assistant using Python, Microsoft Foundry Local, and the RAG pattern for local document retrieval without internet connection.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Additional Info -->
+    <section>
+      <h2 class="section-title">Certifications & Languages</h2>
+      <ul class="bullets">
+        <li><strong>Certifications:</strong> Python Programming (BTK Akademi), Web Development with HTML5 (BTK Akademi), Version Control with Git & GitHub (BTK Akademi)</li>
+        <li><strong>Languages:</strong> Turkish (Native), English (Intermediate - B1)</li>
+      </ul>
+    </section>
+  </div>
+
+</body>
+</html>

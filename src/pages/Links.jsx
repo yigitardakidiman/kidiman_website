@@ -17,7 +17,7 @@ import SEO from '../components/SEO';
 const featuredLinks = [
   {
     title: 'Özgeçmiş & Deneyimlerim',
-    href: '/documents/resume.pdf',
+    href: '/documents/resume-tr.pdf',
     icon: FileText,
     badge: 'CV / PDF',
     highlight: true,
