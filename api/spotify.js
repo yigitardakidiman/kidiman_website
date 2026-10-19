@@ -97,6 +97,9 @@ export async function getSpotifyData() {
           durationMs: song.item.duration_ms,
         };
       }
+    } else if (nowPlayingRes.status !== 204) {
+      const errorText = await nowPlayingRes.text();
+      console.warn(`[Spotify API] Currently playing returned status ${nowPlayingRes.status}:`, errorText);
     }
 
     // 2. If nothing currently playing, get recently played track
@@ -122,6 +125,15 @@ export async function getSpotifyData() {
           durationMs: item.track.duration_ms,
         };
       }
+    } else {
+      const errorText = await recentlyPlayedRes.text();
+      console.warn(`[Spotify API] Recently played returned status ${recentlyPlayedRes.status}:`, errorText);
+      return {
+        isPlaying: false,
+        isOffline: true,
+        error: errorText,
+        message: 'Could not fetch recently played track from Spotify',
+      };
     }
 
     return {
