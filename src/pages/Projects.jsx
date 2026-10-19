@@ -24,12 +24,28 @@ export default function Projects() {
 
   const projectsData = [
     {
-      title: t('projects.simple_banking_system'),
-      description: t('projects.simple_banking_systemDesc'),
-      tags: [t('projects.tags.Python'), t('projects.tags.OOP'), t('projects.tags.DataStructures')],
-      github: "https://github.com/yigitardakidiman/CENG110-Simple-Banking-System",
-      image: "/img/banking.png",
+      title: t('projects.embedded_systems_lab'),
+      description: t('projects.embedded_systems_labDesc'),
+      tags: [t('projects.tags.C'), t('projects.tags.FreeRTOS'), t('projects.tags.BareMetal'), t('projects.tags.FPGA')],
+      github: "https://github.com/yigitardakidiman/embedded-systems-lab",
+      image: "/img/embedded-systems.png",
       isOpenSource: true
+    },
+    {
+      title: t('projects.gitfetch_generator'),
+      description: t('projects.gitfetch_generatorDesc'),
+      tags: [t('projects.tags.React'), t('projects.tags.Typescript'), t('projects.tags.Tailwind')],
+      github: "https://github.com/yigitardakidiman/gitfetch-readme-generator",
+      link: "https://gitfetch.kidiman.com/",
+      image: "/img/gitfetch.png",
+      isOpenSource: true
+    },
+    {
+      title: t('projects.volinor'),
+      description: t('projects.volinorDesc'),
+      tags: [t('projects.tags.React'), t('projects.tags.ThreeJS'), t('projects.tags.Django')],
+      link: "https://www.volinor.com/",
+      image: "/img/volinor.png"
     },
     {
       title: t('projects.kidimusic_generator'),
@@ -41,19 +57,11 @@ export default function Projects() {
       isOpenSource: true
     },
     {
-      title: t('projects.volinor'),
-      description: t('projects.volinorDesc'),
-      tags: [t('projects.tags.React'), t('projects.tags.ThreeJS'), t('projects.tags.Django')],
-      link: "https://www.volinor.com/",
-      image: "/img/volinor.png"
-    },
-    {
-      title: t('projects.gitfetch_generator'),
-      description: t('projects.gitfetch_generatorDesc'),
-      tags: [t('projects.tags.React'), t('projects.tags.Typescript'), t('projects.tags.Tailwind')],
-      github: "https://github.com/yigitardakidiman/gitfetch-readme-generator",
-      link: "https://gitfetch.kidiman.com/",
-      image: "/img/gitfetch.png",
+      title: t('projects.simple_banking_system'),
+      description: t('projects.simple_banking_systemDesc'),
+      tags: [t('projects.tags.Python'), t('projects.tags.OOP'), t('projects.tags.DataStructures')],
+      github: "https://github.com/yigitardakidiman/CENG110-Simple-Banking-System",
+      image: "/img/banking.png",
       isOpenSource: true
     },
   ];

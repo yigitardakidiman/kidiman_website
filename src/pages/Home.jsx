@@ -12,12 +12,20 @@ export default function Home() {
 
   const projectsData = [
     {
-      title: t('projects.kidimusic_generator'),
-      description: t('projects.kidimusic_generatorDesc'),
-      tags: [t('projects.tags.Typescript'), t('projects.tags.JavaScript'), t('projects.tags.CSS')],
-      github: "https://github.com/yigitardakidiman/kidimusic-generator-app",
-      link: "https://music.kidiman.com",
-      image: "/img/kidimusic.png",
+      title: t('projects.embedded_systems_lab'),
+      description: t('projects.embedded_systems_labDesc'),
+      tags: [t('projects.tags.C'), t('projects.tags.FreeRTOS'), t('projects.tags.BareMetal'), t('projects.tags.FPGA')],
+      github: "https://github.com/yigitardakidiman/embedded-systems-lab",
+      image: "/img/embedded-systems.png",
+      isOpenSource: true
+    },
+    {
+      title: t('projects.gitfetch_generator'),
+      description: t('projects.gitfetch_generatorDesc'),
+      tags: [t('projects.tags.React'), t('projects.tags.Typescript'), t('projects.tags.Tailwind')],
+      github: "https://github.com/yigitardakidiman/gitfetch-readme-generator",
+      link: "https://gitfetch.kidiman.com/",
+      image: "/img/gitfetch.png",
       isOpenSource: true
     },
     {
@@ -26,15 +34,6 @@ export default function Home() {
       tags: [t('projects.tags.React'), t('projects.tags.ThreeJS'), t('projects.tags.Django')],
       link: "https://www.volinor.com/",
       image: "/img/volinor.png"
-    },
-    {
-      title: t('projects.gitfetch_generator'),
-      description: t('projects.gitfetch_generatorDesc'),
-      tags: [t('projects.tags.React'), t('projects.tags.Typescript'), t('projects.tags.Tailwind')],
-      github: "https://github.com/yigitardakidiman/gitfetch-readme-generator",
-      link: "https://gitfetch-readme-generator.vercel.app/",
-      image: "/img/gitfetch.png",
-      isOpenSource: true
     }
   ];
 

@@ -58,6 +58,8 @@ const resources = {
       },
       "projects": {
         "heading": "Projects",
+        "embedded_systems_lab": "Embedded Systems Lab",
+        "embedded_systems_labDesc": "Comprehensive multi-architecture embedded systems engineering lab & portfolio covering Bare-Metal, FreeRTOS, Embedded Linux, and FPGA across 11 dev boards.",
         "volinor": "Volinor Defense Website",
         "volinorDesc": "Corporate web platform built for Volinor Defense featuring React, Three.js 3D model visualization, and Django REST API integration.",
         "kidimusic_generator": "KıdıMusic Generator",
@@ -79,7 +81,12 @@ const resources = {
           "Tailwind": "Tailwind CSS",
           "FileManagement": "File Management",
           "OOP": "OOP",
-          "DataStructures": "Data Structures"
+          "DataStructures": "Data Structures",
+          "C": "C / C++",
+          "EmbeddedSystems": "Embedded Systems",
+          "FreeRTOS": "FreeRTOS",
+          "BareMetal": "Bare-Metal",
+          "FPGA": "FPGA"
         },
         "badges": {
           "openSource": "Open Source"
@@ -137,8 +144,8 @@ const resources = {
         },
         "projects": {
           "title": "Projects & Open Source | Yiğit Arda Kıdıman",
-          "description": "Explore featured projects, live demos, and open source contributions by Yiğit Arda Kıdıman, including Volinor Defense, KıdıMusic Generator, and GitFetch.",
-          "keywords": "Yiğit Arda Kıdıman Projects, Volinor, KıdıMusic, GitFetch, Open Source, React Projects, Three.js 3D"
+          "description": "Explore featured projects, live demos, and open source contributions by Yiğit Arda Kıdıman, including Embedded Systems Lab, Volinor Defense, KıdıMusic Generator, and GitFetch.",
+          "keywords": "Yiğit Arda Kıdıman Projects, Embedded Systems, FreeRTOS, Bare-Metal, Volinor, KıdıMusic, GitFetch, Open Source, React Projects, Three.js 3D"
         },
         "gallery": {
           "title": "Gallery & Moments | Yiğit Arda Kıdıman",
@@ -209,6 +216,8 @@ const resources = {
       },
       "projects": {
         "heading": "Projeler",
+        "embedded_systems_lab": "Embedded Systems Lab",
+        "embedded_systems_labDesc": "11 farklı geliştirme kartı üzerinde Bare-Metal, FreeRTOS, Gömülü Linux ve FPGA mimarilerini kapsayan kapsamlı uygulamalı gömülü sistemler laboratuvarı ve portföyü.",
         "volinor": "Volinor Savunma Web Sitesi",
         "volinorDesc": "Volinor Savunma ve Teknoloji için React, Three.js ve Django REST API entegrasyonuyla geliştirilmiş 3D model destekli kurumsal web platformu.",
         "kidimusic_generator": "KıdıMusic Generator",
@@ -230,7 +239,12 @@ const resources = {
           "Tailwind": "Tailwind CSS",
           "FileManagement": "Dosya Yönetimi",
           "OOP": "OOP",
-          "DataStructures": "Veri Yapıları"
+          "DataStructures": "Veri Yapıları",
+          "C": "C / C++",
+          "EmbeddedSystems": "Gömülü Sistemler",
+          "FreeRTOS": "FreeRTOS",
+          "BareMetal": "Bare-Metal",
+          "FPGA": "FPGA"
         },
         "badges": {
           "openSource": "Açık Kaynak"
@@ -288,8 +302,8 @@ const resources = {
         },
         "projects": {
           "title": "Projeler & Açık Kaynak | Yiğit Arda Kıdıman",
-          "description": "Yiğit Arda Kıdıman tarafından geliştirilen projeler ve açık kaynaklı çalışmalar: Volinor Savunma, KıdıMusic Generator, GitFetch README Generator ve daha fazlası.",
-          "keywords": "Yiğit Arda Kıdıman Projeleri, Volinor, KıdıMusic, GitFetch, Açık Kaynak, React Projeleri, Three.js"
+          "description": "Yiğit Arda Kıdıman tarafından geliştirilen projeler ve açık kaynaklı çalışmalar: Embedded Systems Lab, Volinor Savunma, KıdıMusic Generator, GitFetch ve daha fazlası.",
+          "keywords": "Yiğit Arda Kıdıman Projeleri, Gömülü Sistemler, Embedded Systems, FreeRTOS, Bare-Metal, Volinor, KıdıMusic, GitFetch, Açık Kaynak, React Projeleri, Three.js"
         },
         "gallery": {
           "title": "Galeri & Anılar | Yiğit Arda Kıdıman",
