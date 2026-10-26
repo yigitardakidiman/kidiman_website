@@ -1,41 +1,37 @@
+import { Component, Suspense, lazy } from 'react';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'motion/react';
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
-import Lanyard from '../components/Lanyard';
 import ProjectCard from '../components/ProjectCard';
 import SEO from '../components/SEO';
+import { getProjects } from '../data/projectsData';
+
+const Lanyard = lazy(() => import('../components/Lanyard'));
+
+class CanvasErrorBoundary extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { hasError: false };
+  }
+
+  static getDerivedStateFromError() {
+    return { hasError: true };
+  }
+
+  render() {
+    if (this.state.hasError) {
+      return null;
+    }
+    return this.props.children;
+  }
+}
 
 export default function Home() {
   const { t, i18n } = useTranslation();
   const lang = i18n.language?.startsWith('en') ? 'en' : 'tr';
 
-  const projectsData = [
-    {
-      title: t('projects.embedded_systems_lab'),
-      description: t('projects.embedded_systems_labDesc'),
-      tags: [t('projects.tags.C'), t('projects.tags.FreeRTOS'), t('projects.tags.BareMetal'), t('projects.tags.FPGA')],
-      github: "https://github.com/yigitardakidiman/embedded-systems-lab",
-      image: "/img/embedded-systems.png",
-      isOpenSource: true
-    },
-    {
-      title: t('projects.gitfetch_generator'),
-      description: t('projects.gitfetch_generatorDesc'),
-      tags: [t('projects.tags.React'), t('projects.tags.Typescript'), t('projects.tags.Tailwind')],
-      github: "https://github.com/yigitardakidiman/gitfetch-readme-generator",
-      link: "https://gitfetch.kidiman.com/",
-      image: "/img/gitfetch.png",
-      isOpenSource: true
-    },
-    {
-      title: t('projects.volinor'),
-      description: t('projects.volinorDesc'),
-      tags: [t('projects.tags.React'), t('projects.tags.ThreeJS'), t('projects.tags.Django')],
-      link: "https://www.volinor.com/",
-      image: "/img/volinor.png"
-    }
-  ];
+  const projectsData = getProjects(t, { featuredOnly: true });
 
   return (
     <div className="w-full space-y-16 pb-16">
@@ -49,7 +45,11 @@ export default function Home() {
       <section className="w-full min-h-[calc(100vh-4rem)] flex flex-col md:flex-row items-center justify-center relative px-4 md:px-8 overflow-hidden">
         {/* 3D Lanyard Component */}
         <div className="absolute inset-0 w-full h-full z-0">
-          <Lanyard position={[0, 0, 11]} fov={25} anchorX={-2.25} />
+          <CanvasErrorBoundary>
+            <Suspense fallback={null}>
+              <Lanyard position={[0, 0, 11]} fov={25} anchorX={-2.25} />
+            </Suspense>
+          </CanvasErrorBoundary>
         </div>
 
         {/* Hero Content */}
@@ -100,8 +100,8 @@ export default function Home() {
 
           {/* Projects Cards Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {projectsData.map((project, index) => (
-              <ProjectCard key={index} {...project} />
+            {projectsData.map((project) => (
+              <ProjectCard key={project.id} {...project} />
             ))}
           </div>
         </section>

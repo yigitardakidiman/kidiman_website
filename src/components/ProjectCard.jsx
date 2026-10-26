@@ -31,7 +31,11 @@ export default function ProjectCard({ title, description, tags, link, github, co
           <img
             src={image}
             alt={title}
-            className="w-full h-full object-cover object-top"
+            loading="lazy"
+            decoding="async"
+            width="600"
+            height="375"
+            className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
           />
         ) : (
           <div className="w-full h-full flex items-center justify-center text-textMuted/30">
@@ -81,12 +85,12 @@ export default function ProjectCard({ title, description, tags, link, github, co
           <h3 className="text-base font-bold text-textMain leading-tight">{title}</h3>
           <div className="flex gap-1.5 flex-shrink-0 mt-0.5">
             {github && (
-              <a href={github} target="_blank" rel="noreferrer" className="text-textMuted hover:text-brand transition-colors">
+              <a href={github} target="_blank" rel="noreferrer" className="text-textMuted hover:text-brand transition-colors" aria-label={`${title} GitHub`}>
                 <FaGithub size={16} />
               </a>
             )}
             {link && (
-              <a href={link} target="_blank" rel="noreferrer" className="text-textMuted hover:text-brand transition-colors">
+              <a href={link} target="_blank" rel="noreferrer" className="text-textMuted hover:text-brand transition-colors" aria-label={`${title} Live Demo`}>
                 <ExternalLink size={16} />
               </a>
             )}
