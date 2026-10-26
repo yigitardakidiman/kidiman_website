@@ -47,7 +47,13 @@ export default function Home() {
         <div className="absolute inset-0 w-full h-full z-0">
           <CanvasErrorBoundary>
             <Suspense fallback={null}>
-              <Lanyard position={[0, 0, 11]} fov={25} anchorX={-2.25} />
+              <Lanyard
+                anchor="left"
+                finish="glossy"
+                metal="silver"
+                size={0.56}
+                strapLength={0.48}
+              />
             </Suspense>
           </CanvasErrorBoundary>
         </div>
