@@ -1,14 +1,12 @@
 import { useEffect, useRef, useState } from 'react';
 import { motion } from 'motion/react';
+import { Link } from 'react-router-dom';
 import {
   ArrowUpRight,
   Check,
-  Code2,
   FileText,
-  FolderGit2,
   Globe2,
   Mail,
-  Music2,
   Share2
 } from 'lucide-react';
 import { FaGithub, FaInstagram, FaLinkedin, FaSpotify } from 'react-icons/fa';
@@ -77,6 +75,8 @@ const socialLinks = [
     icon: Mail
   }
 ];
+
+const MotionLink = motion.create(Link);
 
 export default function Links() {
   const [copied, setCopied] = useState(false);
@@ -217,62 +217,89 @@ export default function Links() {
           className="mt-6 space-y-2.5 sm:space-y-3"
           aria-label="Bağlantılar"
         >
-          {featuredLinks.map(({ title, href, icon: Icon, external, highlight, badge }) => (
-            <motion.a
-              key={title}
-              href={href}
-              target={external ? '_blank' : undefined}
-              rel={external ? 'noreferrer' : undefined}
-              variants={{
-                hidden: { opacity: 0, y: 10 },
-                visible: { opacity: 1, y: 0, transition: { duration: 0.3 } }
-              }}
-              whileHover={{ y: -2 }}
-              whileTap={{ scale: 0.99 }}
-              className={`group relative flex min-h-[56px] items-center gap-3.5 rounded-2xl border p-2.5 pl-3 pr-4 backdrop-blur-xl transition-all duration-300 sm:min-h-[62px] sm:p-3 sm:pl-3.5 sm:pr-4 ${
-                highlight
-                  ? 'border-brand/40 bg-gradient-to-r from-brand/[0.14] via-white/[0.08] to-white/[0.05] shadow-[0_0_25px_rgba(59,130,246,0.15)] ring-1 ring-brand/30 hover:border-brand/70 hover:shadow-[0_0_35px_rgba(59,130,246,0.25)]'
-                  : 'border-white/[0.09] bg-white/[0.055] shadow-[0_10px_30px_rgba(0,0,0,0.16)] hover:border-brand/45 hover:bg-white/[0.085] hover:shadow-[0_10px_30px_rgba(37,99,235,0.12)]'
-              }`}
-            >
-              <span
-                className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border transition-all duration-300 sm:h-11 sm:w-11 ${
-                  highlight
-                    ? 'border-brand/50 bg-brand/20 text-brand shadow-[0_0_15px_rgba(59,130,246,0.25)] group-hover:scale-105 group-hover:bg-brand group-hover:text-white'
-                    : 'border-white/[0.08] bg-black/25 text-brand group-hover:border-brand/30 group-hover:bg-brand group-hover:text-white'
-                }`}
-              >
-                <Icon size={20} />
-              </span>
+          {featuredLinks.map(({ title, href, icon: Icon, external, highlight, badge }) => {
+            const isInternalRoute = !external && href.startsWith('/');
+            const cardClassName = `group relative flex min-h-[56px] items-center gap-3.5 rounded-2xl border p-2.5 pl-3 pr-4 backdrop-blur-xl transition-all duration-300 sm:min-h-[62px] sm:p-3 sm:pl-3.5 sm:pr-4 ${
+              highlight
+                ? 'border-brand/40 bg-gradient-to-r from-brand/[0.14] via-white/[0.08] to-white/[0.05] shadow-[0_0_25px_rgba(59,130,246,0.15)] ring-1 ring-brand/30 hover:border-brand/70 hover:shadow-[0_0_35px_rgba(59,130,246,0.25)]'
+                : 'border-white/[0.09] bg-white/[0.055] shadow-[0_10px_30px_rgba(0,0,0,0.16)] hover:border-brand/45 hover:bg-white/[0.085] hover:shadow-[0_10px_30px_rgba(37,99,235,0.12)]'
+            }`;
+            const itemVariants = {
+              hidden: { opacity: 0, y: 10 },
+              visible: { opacity: 1, y: 0, transition: { duration: 0.3 } }
+            };
 
-              <span className="min-w-0 flex-1 text-left">
-                <span className="flex items-center gap-2">
-                  <span className="block text-[14px] font-semibold text-white sm:text-[15px]">{title}</span>
-                  {badge && (
-                    <span className="inline-flex items-center rounded-md border border-brand/40 bg-brand/20 px-2 py-0.5 text-[10px] font-semibold tracking-wider text-blue-300 uppercase">
-                      {badge}
-                    </span>
-                  )}
+            const innerContent = (
+              <>
+                <span
+                  className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border transition-all duration-300 sm:h-11 sm:w-11 ${
+                    highlight
+                      ? 'border-brand/50 bg-brand/20 text-brand shadow-[0_0_15px_rgba(59,130,246,0.25)] group-hover:scale-105 group-hover:bg-brand group-hover:text-white'
+                      : 'border-white/[0.08] bg-black/25 text-brand group-hover:border-brand/30 group-hover:bg-brand group-hover:text-white'
+                  }`}
+                >
+                  <Icon size={20} />
                 </span>
-              </span>
 
-              <ArrowUpRight
-                size={18}
-                className={`shrink-0 transition-all duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 ${
-                  highlight
-                    ? 'text-blue-400 group-hover:text-white'
-                    : 'text-zinc-600 group-hover:text-brand'
-                }`}
-                aria-hidden="true"
-              />
-            </motion.a>
-          ))}
+                <span className="min-w-0 flex-1 text-left">
+                  <span className="flex items-center gap-2">
+                    <span className="block text-[14px] font-semibold text-white sm:text-[15px]">{title}</span>
+                    {badge && (
+                      <span className="inline-flex items-center rounded-md border border-brand/40 bg-brand/20 px-2 py-0.5 text-[10px] font-semibold tracking-wider text-blue-300 uppercase">
+                        {badge}
+                      </span>
+                    )}
+                  </span>
+                </span>
+
+                <ArrowUpRight
+                  size={18}
+                  className={`shrink-0 transition-all duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 ${
+                    highlight
+                      ? 'text-blue-400 group-hover:text-white'
+                      : 'text-zinc-600 group-hover:text-brand'
+                  }`}
+                  aria-hidden="true"
+                />
+              </>
+            );
+
+            if (isInternalRoute) {
+              return (
+                <MotionLink
+                  key={title}
+                  to={href}
+                  variants={itemVariants}
+                  whileHover={{ y: -2 }}
+                  whileTap={{ scale: 0.99 }}
+                  className={cardClassName}
+                >
+                  {innerContent}
+                </MotionLink>
+              );
+            }
+
+            return (
+              <motion.a
+                key={title}
+                href={href}
+                target={external ? '_blank' : undefined}
+                rel={external ? 'noreferrer' : undefined}
+                variants={itemVariants}
+                whileHover={{ y: -2 }}
+                whileTap={{ scale: 0.99 }}
+                className={cardClassName}
+              >
+                {innerContent}
+              </motion.a>
+            );
+          })}
         </motion.section>
 
         <footer className="mt-auto pt-10 text-center text-xs text-zinc-600">
-          <a href="/" className="transition-colors hover:text-textMuted">
+          <Link to="/" className="transition-colors hover:text-textMuted">
             kidiman.com
-          </a>
+          </Link>
         </footer>
       </main>
     </div>

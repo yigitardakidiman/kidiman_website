@@ -1,12 +1,12 @@
 import { useState, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'motion/react';
-import { Maximize2, Image as ImageIcon } from 'lucide-react';
+import { Maximize2 } from 'lucide-react';
 import { galleryData } from '../data/galleryData';
 import LightboxModal from '../components/LightboxModal';
 import SEO from '../components/SEO';
 
-function GalleryImage({ item, index, onClick }) {
+function GalleryImage({ item, index, onClick, altFallback }) {
   const [isLoaded, setIsLoaded] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
   const ref = useRef(null);
@@ -50,7 +50,7 @@ function GalleryImage({ item, index, onClick }) {
 
         <img
           src={isPriority || isVisible ? item.src : undefined}
-          alt={item.title || `Gallery photo ${index + 1}`}
+          alt={item.caption || item.title || altFallback}
           loading={isPriority ? "eager" : "lazy"}
           fetchPriority={isPriority ? "high" : "auto"}
           decoding="async"
@@ -114,6 +114,7 @@ export default function Gallery() {
             key={item.id || index}
             item={item}
             index={index}
+            altFallback={t('gallery.photoAlt', { index: index + 1 })}
             onClick={() => openLightbox(index)}
           />
         ))}

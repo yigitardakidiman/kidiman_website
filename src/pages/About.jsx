@@ -1,8 +1,68 @@
 import { useTranslation } from 'react-i18next';
 import { motion } from 'motion/react';
 import { FileText, GraduationCap, Briefcase } from 'lucide-react';
+import {
+  SiReact,
+  SiNextdotjs,
+  SiThreedotjs,
+  SiTailwindcss,
+  SiHtml5,
+  SiCss,
+  SiDjango,
+  SiPython,
+  SiJavascript,
+  SiTypescript,
+  SiC,
+  SiSupabase,
+  SiGit,
+  SiGithub,
+  SiVite,
+} from 'react-icons/si';
+import { TbApi } from 'react-icons/tb';
+import { VscVscode } from 'react-icons/vsc';
 import SpotifyNowPlaying from '../components/SpotifyNowPlaying';
 import SEO from '../components/SEO';
+
+const skillCategories = [
+  {
+    key: 'frontend',
+    items: [
+      { name: 'React.js', icon: SiReact },
+      { name: 'Next.js', icon: SiNextdotjs },
+      { name: 'Three.js', icon: SiThreedotjs },
+      { name: 'Tailwind CSS', icon: SiTailwindcss },
+      { name: 'HTML5', icon: SiHtml5 },
+      { name: 'CSS3', icon: SiCss },
+    ],
+  },
+  {
+    key: 'backend',
+    items: [
+      { name: 'Django', icon: SiDjango },
+      { name: 'Django REST Framework', icon: SiDjango },
+      { name: 'REST API', icon: TbApi },
+    ],
+  },
+  {
+    key: 'programmingLanguages',
+    items: [
+      { name: 'Python', icon: SiPython },
+      { name: 'JavaScript', icon: SiJavascript },
+      { name: 'TypeScript', icon: SiTypescript },
+      { name: 'C', icon: SiC },
+    ],
+  },
+  {
+    key: 'tools',
+    items: [
+      { name: 'Supabase', icon: SiSupabase },
+      { name: 'Git', icon: SiGit },
+      { name: 'GitHub', icon: SiGithub },
+      { name: 'Vite', icon: SiVite },
+      { name: 'VS Code', icon: VscVscode },
+    ],
+  },
+];
 
 export default function About() {
   const { t, i18n } = useTranslation();
@@ -25,10 +85,10 @@ export default function About() {
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5 }}
-      className="space-y-8 py-6"
+      variants={container}
+      initial="hidden"
+      animate="show"
+      className="space-y-6 py-6"
     >
       <SEO
         title={t('seo.about.title')}
@@ -106,6 +166,32 @@ export default function About() {
           <SpotifyNowPlaying />
         </motion.div>
       </div>
+
+      {/* 4. Yetenekler & Teknolojiler (İkonlu rozet ve 2 sütunlu kart düzeni) */}
+      <motion.div variants={item} className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        {skillCategories.map(({ key, items }) => (
+          <div
+            key={key}
+            className="rounded-2xl bg-black/40 backdrop-blur-xl border border-white/10 hover:border-white/20 p-5 space-y-3.5 transition-colors"
+          >
+            <h3 className="text-base font-bold text-textMain">
+              {t(`about.${key}`)}
+            </h3>
+
+            <div className="flex flex-wrap gap-2">
+              {items.map(({ name, icon: Icon }) => (
+                <span
+                  key={name}
+                  className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-white/[0.03] hover:bg-white/[0.07] border border-white/10 hover:border-white/20 text-xs sm:text-[13px] font-semibold text-textMain transition-colors"
+                >
+                  <Icon className="text-white/90 text-sm shrink-0" />
+                  <span>{name}</span>
+                </span>
+              ))}
+            </div>
+          </div>
+        ))}
+      </motion.div>
     </motion.div>
   );
 }

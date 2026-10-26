@@ -11,14 +11,22 @@ const resources = {
         "aboutMe": "About Me",
         "viewGallery": "View Gallery",
         "getInTouch": "Get in Touch",
-        "aboutMore": "More About Me",
+        "dragHint": "Grab & drag the 3D badge",
+        "aboutMore": "More About Me & CV",
+        "aboutTeaserBadge": "Volinor Defense • Software Developer",
+        "moreTechBadge": "+12 more skills & experience →",
         "allProjects": "View All Projects",
+        "githubTeaserTitle": "Live GitHub Activity & All Repositories",
+        "githubTeaserSub": "Click to view my real-time contribution heatmap and other open-source works.",
+        "galleryHeading": "Gallery & Moments",
+        "gallerySubtitle": "Snapshots from hackathons, tech events, and my engineering journey.",
         "allGallery": "View Full Gallery",
+        "morePhotos": "+{{count}} More Photos",
         "allContact": "Contact Details",
         "projectsHeading": "Featured Projects",
         "projectsSubtitle": "A selection of recent works and open source projects I've built.",
-        "contactHeading": "Get in Touch",
-        "contactSubtitle": "Feel free to reach out for collaborations, questions, or just to say hi.",
+        "contactHeading": "Let's Build Together",
+        "contactSubtitle": "Feel free to reach out for collaborations, project inquiries, or just to say hi.",
         "contactPageBtn": "Go to Contact Page"
       },
       "nav": {
@@ -30,7 +38,9 @@ const resources = {
       },
       "gallery": {
         "heading": "Gallery",
-        "subtitle": "Moments, events, and memories."
+        "subtitle": "Moments, events, and memories.",
+        "photoAlt": "Yiğit Arda Kıdıman — Gallery Moment {{index}}",
+        "swipeHint": "Swipe or use arrow keys to navigate"
       },
       "about": {
         "heading": "About Me",
@@ -53,7 +63,7 @@ const resources = {
         "skills": "Skills & Technologies",
         "backend": "Backend",
         "frontend": "Frontend",
-        "tools": "Tools",
+        "tools": "Tools & Databases",
         "programmingLanguages": "Programming Languages"
       },
       "projects": {
@@ -98,7 +108,35 @@ const resources = {
         "email": "E-mail",
         "linkedin": "LinkedIn",
         "instagram": "Instagram",
+        "copyEmail": "Copy e-mail",
+        "sendEmail": "Send e-mail",
         "copied": "Copied to clipboard!"
+      },
+      "commandPalette": {
+        "placeholder": "Type a command or search...",
+        "noResults": "No matching commands found.",
+        "sections": {
+          "navigation": "Navigation",
+          "actions": "Quick Actions",
+          "social": "Social & Links"
+        },
+        "items": {
+          "links": "Link-in-Bio (/links)",
+          "resume": "View Resume (PDF)",
+          "copyEmail": "Copy E-mail Address",
+          "switchLang": "Switch Language to Türkçe",
+          "github": "Open GitHub Profile",
+          "linkedin": "Open LinkedIn Profile",
+          "instagram": "Open Instagram (@codewithkidiman)"
+        },
+        "footer": {
+          "navigate": "Navigate",
+          "select": "Select",
+          "close": "Close"
+        }
+      },
+      "footer": {
+        "rights": "All rights reserved."
       },
       "spotify": {
         "nowPlaying": "Listening on Spotify",
@@ -169,9 +207,17 @@ const resources = {
         "aboutMe": "Hakkımda",
         "viewGallery": "Galeriyi Gör",
         "getInTouch": "İletişime Geç",
-        "aboutMore": "Hakkımda Daha Fazlası",
+        "dragHint": "3D kartı tutup sürükleyebilirsin",
+        "aboutMore": "Hakkımda & Özgeçmişim",
+        "aboutTeaserBadge": "Volinor Savunma • Software Developer",
+        "moreTechBadge": "+12 yetenek, deneyim & CV →",
         "allProjects": "Tüm Projeleri Gör",
+        "githubTeaserTitle": "Canlı GitHub Aktivitesi & Tüm Repolar",
+        "githubTeaserSub": "Son 1 yıldaki canlı katkı haritamı (heatmap) ve diğer açık kaynak projelerimi görmek için tıklayın.",
+        "galleryHeading": "Galeri & Anılar",
+        "gallerySubtitle": "Etkinliklerden, hackathonlardan ve yazılım yolculuğumdan kareler.",
         "allGallery": "Tüm Galeriyi Gör",
+        "morePhotos": "+{{count}} Fotoğraf Daha",
         "allContact": "İletişim Detayları",
         "projectsHeading": "Öne Çıkan Projeler",
         "projectsSubtitle": "Geliştirdiğim güncel çalışmalar ve açık kaynaklı projeler.",
@@ -188,7 +234,9 @@ const resources = {
       },
       "gallery": {
         "heading": "Galeri",
-        "subtitle": "Anlar, etkinlikler ve anılar."
+        "subtitle": "Anlar, etkinlikler ve anılar.",
+        "photoAlt": "Yiğit Arda Kıdıman — Galeri Anısı {{index}}",
+        "swipeHint": "Gezinmek için kaydırın veya yön tuşlarını kullanın"
       },
       "about": {
         "heading": "Hakkımda",
@@ -209,9 +257,9 @@ const resources = {
         "workType2": "Stajyer",
         "workDuration2": "Haz 2026 - 1 ay | Ankara",
         "skills": "Yetenekler & Teknolojiler",
-        "backend": "Backend",
-        "frontend": "Frontend",
-        "tools": "Araçlar",
+        "backend": "Arka Yüz",
+        "frontend": "Ön Yüz",
+        "tools": "Araçlar & Veritabanları",
         "programmingLanguages": "Programlama Dilleri"
       },
       "projects": {
@@ -256,7 +304,35 @@ const resources = {
         "email": "E-posta",
         "linkedin": "LinkedIn",
         "instagram": "Instagram",
+        "copyEmail": "Adresi kopyala",
+        "sendEmail": "E-posta gönder",
         "copied": "Panoya kopyalandı!"
+      },
+      "commandPalette": {
+        "placeholder": "Bir komut yazın veya sayfa arayın...",
+        "noResults": "Eşleşen sonuç bulunamadı.",
+        "sections": {
+          "navigation": "Sayfalar",
+          "actions": "Hızlı İşlemler",
+          "social": "Sosyal & Bağlantılar"
+        },
+        "items": {
+          "links": "Hızlı Bağlantılar (/links)",
+          "resume": "Özgeçmişi Görüntüle (PDF)",
+          "copyEmail": "E-posta Adresini Kopyala",
+          "switchLang": "Dili İngilizce'ye (EN) Çevir",
+          "github": "GitHub Profilini Aç",
+          "linkedin": "LinkedIn Profilini Aç",
+          "instagram": "Instagram (@codewithkidiman)"
+        },
+        "footer": {
+          "navigate": "Gezin",
+          "select": "Seç",
+          "close": "Kapat"
+        }
+      },
+      "footer": {
+        "rights": "Tüm hakları saklıdır."
       },
       "spotify": {
         "nowPlaying": "Spotify'da Çalıyor",

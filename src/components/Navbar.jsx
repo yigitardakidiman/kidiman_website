@@ -2,8 +2,12 @@ import { useTranslation } from 'react-i18next';
 import { motion } from 'motion/react';
 import { useLocation, Link } from 'react-router-dom';
 import LanguageToggle from './LanguageToggle';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Search } from 'lucide-react';
 import { useState } from 'react';
+
+function triggerCommandPalette() {
+  window.dispatchEvent(new CustomEvent('kidiman:open-command-palette'));
+}
 
 export default function Navbar() {
   const { t, i18n } = useTranslation();
@@ -62,13 +66,33 @@ export default function Navbar() {
                 </Link>
               );
             })}
-            <div className="flex items-center gap-2 pl-4 border-l border-secondary">
+            <div className="flex items-center gap-2.5 pl-4 border-l border-secondary">
+              <button
+                type="button"
+                onClick={triggerCommandPalette}
+                className="inline-flex items-center gap-2 px-2.5 py-1.5 rounded-full bg-secondary/80 hover:bg-secondary border border-white/10 hover:border-brand/40 text-xs text-textMuted hover:text-white transition-all cursor-pointer"
+                aria-label="Open Command Palette"
+                title="Command Palette (Ctrl + K)"
+              >
+                <Search size={14} className="text-brand" />
+                <kbd className="font-mono text-[10px] bg-black/40 px-1.5 py-0.5 rounded border border-white/10">
+                  Ctrl K
+                </kbd>
+              </button>
               <LanguageToggle />
             </div>
           </div>
 
           {/* Mobile menu button */}
-          <div className="md:hidden flex items-center gap-4">
+          <div className="md:hidden flex items-center gap-2.5">
+            <button
+              type="button"
+              onClick={triggerCommandPalette}
+              className="p-2 rounded-full bg-secondary text-textMain hover:bg-brand hover:text-white transition-colors cursor-pointer"
+              aria-label="Open Command Palette"
+            >
+              <Search size={18} />
+            </button>
             <LanguageToggle />
             <button
               onClick={() => setIsOpen(!isOpen)}
