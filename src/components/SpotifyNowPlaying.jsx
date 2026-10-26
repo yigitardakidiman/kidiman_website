@@ -75,21 +75,28 @@ export default function SpotifyNowPlaying({ compact = false }) {
   const [loading, setLoading] = useState(true);
   const [progressMs, setProgressMs] = useState(0);
 
-  const fetchSpotify = async () => {
-    try {
-      const res = await fetch('/api/spotify');
-      if (res.ok) {
-        const json = await res.json();
-        setData(json);
-      }
-    } catch (err) {
-      console.error('Spotify API fetch error:', err);
-    } finally {
-      setLoading(false);
-    }
-  };
-
   useEffect(() => {
+    let isMounted = true;
+
+    const fetchSpotify = async () => {
+      try {
+        const res = await fetch('/api/spotify');
+        if (res.ok && isMounted) {
+          const json = await res.json();
+          setData(json);
+          if (json?.progressMs !== undefined) {
+            setProgressMs(json.progressMs);
+          }
+        }
+      } catch (err) {
+        console.error('Spotify API fetch error:', err);
+      } finally {
+        if (isMounted) {
+          setLoading(false);
+        }
+      }
+    };
+
     fetchSpotify();
 
     // Poll every 8 seconds when tab is active for ultra-fast updates
@@ -110,18 +117,12 @@ export default function SpotifyNowPlaying({ compact = false }) {
     document.addEventListener('visibilitychange', handleFocus);
 
     return () => {
+      isMounted = false;
       clearInterval(interval);
       window.removeEventListener('focus', handleFocus);
       document.removeEventListener('visibilitychange', handleFocus);
     };
   }, []);
-
-  // Sync real-time progress when new data arrives
-  useEffect(() => {
-    if (data?.progressMs !== undefined) {
-      setProgressMs(data.progressMs);
-    }
-  }, [data?.progressMs, data?.title]);
 
   // Smooth live ticking while playing
   useEffect(() => {

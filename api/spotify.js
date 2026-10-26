@@ -9,7 +9,26 @@ const TOKEN_ENDPOINT = 'https://accounts.spotify.com/api/token';
 const NOW_PLAYING_ENDPOINT = 'https://api.spotify.com/v1/me/player/currently-playing';
 const RECENTLY_PLAYED_ENDPOINT = 'https://api.spotify.com/v1/me/player/recently-played?limit=1';
 
+// Persist cache across warm serverless invocations and Vite dev server reloads
+const cache = (globalThis.__spotifyApiCache ??= {
+  accessToken: null,
+  tokenExpiresAt: 0,
+  lastData: null,
+  lastDataAt: 0,
+  credentials: null,
+});
+
+const RESPONSE_CACHE_TTL_MS = 4000; // 4 seconds in-memory deduplication
+
 function getCredentials() {
+  if (
+    cache.credentials?.client_id &&
+    cache.credentials?.client_secret &&
+    cache.credentials?.refresh_token
+  ) {
+    return cache.credentials;
+  }
+
   let client_id = process.env.SPOTIFY_CLIENT_ID;
   let client_secret = process.env.SPOTIFY_CLIENT_SECRET;
   let refresh_token = process.env.SPOTIFY_REFRESH_TOKEN;
@@ -18,31 +37,42 @@ function getCredentials() {
   if (client_secret === 'undefined') client_secret = undefined;
   if (refresh_token === 'undefined') refresh_token = undefined;
 
-  // Read directly from .env file
-  try {
-    const envPath = path.resolve(process.cwd(), '.env');
-    if (fs.existsSync(envPath)) {
-      const envFile = fs.readFileSync(envPath, 'utf-8');
-      envFile.split(/\r?\n/).forEach((line) => {
-        const match = line.match(/^\s*([\w.-]+)\s*=\s*(.*)?\s*$/);
-        if (match) {
-          const key = match[1];
-          let val = match[2] || '';
-          val = val.trim().replace(/(^['"]|['"]$)/g, '');
-          if (key === 'SPOTIFY_CLIENT_ID') client_id = val;
-          if (key === 'SPOTIFY_CLIENT_SECRET') client_secret = val;
-          if (key === 'SPOTIFY_REFRESH_TOKEN') refresh_token = val;
-        }
-      });
+  // Read from .env file if not already in process.env
+  if (!client_id || !client_secret || !refresh_token) {
+    try {
+      const envPath = path.resolve(process.cwd(), '.env');
+      if (fs.existsSync(envPath)) {
+        const envFile = fs.readFileSync(envPath, 'utf-8');
+        envFile.split(/\r?\n/).forEach((line) => {
+          const match = line.match(/^\s*([\w.-]+)\s*=\s*(.*)?\s*$/);
+          if (match) {
+            const key = match[1];
+            let val = match[2] || '';
+            val = val.trim().replace(/(^['"]|['"]$)/g, '');
+            if (key === 'SPOTIFY_CLIENT_ID') client_id = val;
+            if (key === 'SPOTIFY_CLIENT_SECRET') client_secret = val;
+            if (key === 'SPOTIFY_REFRESH_TOKEN') refresh_token = val;
+          }
+        });
+      }
+    } catch (e) {
+      console.warn('Could not read .env file:', e.message);
     }
-  } catch (e) {
-    console.warn('Could not read .env file:', e.message);
+  }
+
+  if (client_id && client_secret && refresh_token) {
+    cache.credentials = { client_id, client_secret, refresh_token };
   }
 
   return { client_id, client_secret, refresh_token };
 }
 
-async function getAccessToken() {
+async function getAccessToken(forceRefresh = false) {
+  const now = Date.now();
+  if (!forceRefresh && cache.accessToken && now < cache.tokenExpiresAt) {
+    return cache.accessToken;
+  }
+
   const { client_id, client_secret, refresh_token } = getCredentials();
 
   if (!client_id || !client_secret || !refresh_token) {
@@ -68,24 +98,45 @@ async function getAccessToken() {
     throw new Error(`Failed to refresh token: ${response.status} ${errorText}`);
   }
 
-  return response.json();
+  const tokenData = await response.json();
+  const expiresInMs = ((tokenData.expires_in || 3600) - 60) * 1000; // 60s safety margin
+
+  cache.accessToken = tokenData.access_token;
+  cache.tokenExpiresAt = now + Math.max(expiresInMs, 60_000);
+
+  return cache.accessToken;
 }
 
 export async function getSpotifyData() {
+  const now = Date.now();
+  if (cache.lastData && now - cache.lastDataAt < RESPONSE_CACHE_TTL_MS) {
+    return cache.lastData;
+  }
+
   try {
-    const { access_token } = await getAccessToken();
+    let access_token = await getAccessToken(false);
 
     // 1. Try to get currently playing song
-    const nowPlayingRes = await fetch(NOW_PLAYING_ENDPOINT, {
+    let nowPlayingRes = await fetch(NOW_PLAYING_ENDPOINT, {
       headers: {
         Authorization: `Bearer ${access_token}`,
       },
     });
 
+    // If token was revoked early (401), force refresh once
+    if (nowPlayingRes.status === 401) {
+      access_token = await getAccessToken(true);
+      nowPlayingRes = await fetch(NOW_PLAYING_ENDPOINT, {
+        headers: {
+          Authorization: `Bearer ${access_token}`,
+        },
+      });
+    }
+
     if (nowPlayingRes.status === 200) {
       const song = await nowPlayingRes.json();
       if (song && song.item) {
-        return {
+        const result = {
           isPlaying: song.is_playing,
           isRecentlyPlayed: !song.is_playing,
           title: song.item.name,
@@ -96,6 +147,9 @@ export async function getSpotifyData() {
           progressMs: song.progress_ms,
           durationMs: song.item.duration_ms,
         };
+        cache.lastData = result;
+        cache.lastDataAt = Date.now();
+        return result;
       }
     } else if (nowPlayingRes.status !== 204) {
       const errorText = await nowPlayingRes.text();
@@ -113,7 +167,7 @@ export async function getSpotifyData() {
       const recent = await recentlyPlayedRes.json();
       const item = recent.items?.[0];
       if (item && item.track) {
-        return {
+        const result = {
           isPlaying: false,
           isRecentlyPlayed: true,
           title: item.track.name,
@@ -124,6 +178,9 @@ export async function getSpotifyData() {
           playedAt: item.played_at,
           durationMs: item.track.duration_ms,
         };
+        cache.lastData = result;
+        cache.lastDataAt = Date.now();
+        return result;
       }
     } else {
       const errorText = await recentlyPlayedRes.text();
@@ -136,17 +193,22 @@ export async function getSpotifyData() {
       };
     }
 
-    return {
+    const fallback = {
       isPlaying: false,
       isOffline: true,
       message: 'No track currently playing or recently played',
     };
+    cache.lastData = fallback;
+    cache.lastDataAt = Date.now();
+    return fallback;
   } catch (error) {
-    return {
-      isPlaying: false,
-      isOffline: true,
-      error: error.message || 'Unknown error occurred',
-    };
+    return (
+      cache.lastData || {
+        isPlaying: false,
+        isOffline: true,
+        error: error.message || 'Unknown error occurred',
+      }
+    );
   }
 }
 
@@ -164,7 +226,7 @@ export default async function handler(req, res) {
     return;
   }
 
-  res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
+  res.setHeader('Cache-Control', 'public, s-maxage=5, stale-while-revalidate=10');
 
   const data = await getSpotifyData();
   res.status(200).json(data);

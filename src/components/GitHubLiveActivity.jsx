@@ -3,11 +3,45 @@ import { useTranslation } from 'react-i18next';
 import { FaGithub } from 'react-icons/fa';
 import { ExternalLink, CalendarDays } from 'lucide-react';
 
+const GITHUB_CACHE_KEY = 'kidiman_github_activity_v1';
+const GITHUB_CACHE_TTL_MS = 15 * 60 * 1000; // 15 minutes
+
+function readCachedGitHubData() {
+  try {
+    const raw = localStorage.getItem(GITHUB_CACHE_KEY);
+    if (!raw) return null;
+    const parsed = JSON.parse(raw);
+    if (!parsed || typeof parsed !== 'object') return null;
+    const isFresh = Date.now() - (parsed.timestamp || 0) < GITHUB_CACHE_TTL_MS;
+    return { ...parsed, isFresh };
+  } catch {
+    return null;
+  }
+}
+
+function writeCachedGitHubData(userStats, contributionsData) {
+  try {
+    localStorage.setItem(
+      GITHUB_CACHE_KEY,
+      JSON.stringify({
+        userStats,
+        contributionsData,
+        timestamp: Date.now(),
+      })
+    );
+  } catch {
+    // Ignore storage quota / privacy mode errors
+  }
+}
+
 export default function GitHubLiveActivity() {
   const { t, i18n } = useTranslation();
-  const [userStats, setUserStats] = useState(null);
-  const [contributionsData, setContributionsData] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const initialCache = useMemo(() => readCachedGitHubData(), []);
+  const [userStats, setUserStats] = useState(() => initialCache?.userStats || null);
+  const [contributionsData, setContributionsData] = useState(
+    () => initialCache?.contributionsData || null
+  );
+  const [loading, setLoading] = useState(() => !initialCache?.contributionsData);
 
   const heatmapContainerRef = useRef(null);
   const tooltipRef = useRef(null);
@@ -15,6 +49,13 @@ export default function GitHubLiveActivity() {
   const tooltipCountRef = useRef(null);
 
   useEffect(() => {
+    // Skip network request if cached data is still fresh (< 15 mins old)
+    if (initialCache?.isFresh && initialCache?.contributionsData) {
+      return;
+    }
+
+    let isMounted = true;
+
     async function fetchGitHubData() {
       try {
         const [userRes, contribRes] = await Promise.all([
@@ -22,24 +63,37 @@ export default function GitHubLiveActivity() {
           fetch('https://github-contributions-api.jogruber.de/v4/yigitardakidiman?y=last'),
         ]);
 
+        let nextUserStats = initialCache?.userStats || null;
+        let nextContribData = initialCache?.contributionsData || null;
+
         if (userRes.ok) {
-          const userData = await userRes.json();
-          setUserStats(userData);
+          nextUserStats = await userRes.json();
+          if (isMounted) setUserStats(nextUserStats);
         }
 
         if (contribRes.ok) {
-          const contribJson = await contribRes.json();
-          setContributionsData(contribJson);
+          nextContribData = await contribRes.json();
+          if (isMounted) setContributionsData(nextContribData);
+        }
+
+        if (nextContribData) {
+          writeCachedGitHubData(nextUserStats, nextContribData);
         }
       } catch (err) {
         console.error('GitHub API fetch error:', err);
       } finally {
-        setLoading(false);
+        if (isMounted) {
+          setLoading(false);
+        }
       }
     }
 
     fetchGitHubData();
-  }, []);
+
+    return () => {
+      isMounted = false;
+    };
+  }, [initialCache]);
 
   // Group contributions into 7-day columns (weeks) memoized with localized tooltip labels
   const weeks = useMemo(() => {
