@@ -7,7 +7,9 @@ const GITHUB_CACHE_KEY = 'kidiman_github_activity_v2';
 
 function readCachedGitHubData() {
   try {
-    const raw = localStorage.getItem(GITHUB_CACHE_KEY);
+    const raw =
+      localStorage.getItem(GITHUB_CACHE_KEY) ||
+      localStorage.getItem('kidiman_github_activity_v1');
     if (!raw) return null;
     return JSON.parse(raw);
   } catch {
@@ -47,25 +49,13 @@ export default function GitHubLiveActivity() {
   useEffect(() => {
     let isMounted = true;
 
-    // Fetch fresh data from GitHub on every page load / refresh (bypassing edge caches)
+    // Fetch fresh data from GitHub on every page load / refresh
     async function fetchGitHubData() {
       try {
         const cacheBuster = Date.now();
         const [userRes, contribRes] = await Promise.all([
-          fetch(`https://api.github.com/users/yigitardakidiman?_cb=${cacheBuster}`, {
-            cache: 'no-store',
-            headers: {
-              'Cache-Control': 'no-cache',
-              Pragma: 'no-cache',
-            },
-          }),
-          fetch(`https://github-contributions-api.jogruber.de/v4/yigitardakidiman?y=last&_cb=${cacheBuster}`, {
-            cache: 'no-store',
-            headers: {
-              'Cache-Control': 'no-cache',
-              Pragma: 'no-cache',
-            },
-          }),
+          fetch('https://api.github.com/users/yigitardakidiman'),
+          fetch(`https://github-contributions-api.jogruber.de/v4/yigitardakidiman?y=last&_cb=${cacheBuster}`),
         ]);
 
         let nextUserStats = null;
