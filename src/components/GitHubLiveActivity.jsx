@@ -4,16 +4,12 @@ import { FaGithub } from 'react-icons/fa';
 import { ExternalLink, CalendarDays } from 'lucide-react';
 
 const GITHUB_CACHE_KEY = 'kidiman_github_activity_v1';
-const GITHUB_CACHE_TTL_MS = 15 * 60 * 1000; // 15 minutes
 
 function readCachedGitHubData() {
   try {
     const raw = localStorage.getItem(GITHUB_CACHE_KEY);
     if (!raw) return null;
-    const parsed = JSON.parse(raw);
-    if (!parsed || typeof parsed !== 'object') return null;
-    const isFresh = Date.now() - (parsed.timestamp || 0) < GITHUB_CACHE_TTL_MS;
-    return { ...parsed, isFresh };
+    return JSON.parse(raw);
   } catch {
     return null;
   }
@@ -49,13 +45,9 @@ export default function GitHubLiveActivity() {
   const tooltipCountRef = useRef(null);
 
   useEffect(() => {
-    // Skip network request if cached data is still fresh (< 15 mins old)
-    if (initialCache?.isFresh && initialCache?.contributionsData) {
-      return;
-    }
-
     let isMounted = true;
 
+    // Fetch fresh data from GitHub on every page load / refresh
     async function fetchGitHubData() {
       try {
         const [userRes, contribRes] = await Promise.all([
@@ -63,8 +55,8 @@ export default function GitHubLiveActivity() {
           fetch('https://github-contributions-api.jogruber.de/v4/yigitardakidiman?y=last'),
         ]);
 
-        let nextUserStats = initialCache?.userStats || null;
-        let nextContribData = initialCache?.contributionsData || null;
+        let nextUserStats = null;
+        let nextContribData = null;
 
         if (userRes.ok) {
           nextUserStats = await userRes.json();
@@ -93,7 +85,7 @@ export default function GitHubLiveActivity() {
     return () => {
       isMounted = false;
     };
-  }, [initialCache]);
+  }, []);
 
   // Group contributions into 7-day columns (weeks) memoized with localized tooltip labels
   const weeks = useMemo(() => {
