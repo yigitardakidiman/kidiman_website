@@ -1,4 +1,3 @@
-import { motion } from 'motion/react';
 import { ExternalLink } from 'lucide-react';
 import { FaGithub } from 'react-icons/fa';
 import { useTranslation } from 'react-i18next';
@@ -18,11 +17,7 @@ export default function ProjectCard({ title, description, tags, link, github, co
   const colorClass = badgeColors[badgeColor] || badgeColors.teal;
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 50 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.2 }}
-      transition={{ duration: 0.5 }}
+    <div
       className="group relative flex flex-col h-full rounded-2xl bg-[#1a1a1f] border border-white/[0.06] overflow-hidden transition-all duration-300 hover:border-white/[0.12] hover:shadow-[0_8px_40px_rgba(37,99,235,0.08)] hover:-translate-y-1"
     >
       {/* Image Preview */}
@@ -125,6 +120,6 @@ export default function ProjectCard({ title, description, tags, link, github, co
           </div>
         )}
       </div>
-    </motion.div>
+    </div>
   );
 }
