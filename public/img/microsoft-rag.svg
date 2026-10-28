@@ -1,0 +1,113 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" width="1200" height="750" fill="none">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="1200" y2="750" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#3f434a" />
+      <stop offset="50%" stop-color="#494d55" />
+      <stop offset="100%" stop-color="#363940" />
+    </linearGradient>
+    <linearGradient id="winBg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0f1724" />
+      <stop offset="100%" stop-color="#0b111c" />
+    </linearGradient>
+    <filter id="winShadow" x="-10%" y="-10%" width="125%" height="125%">
+      <feDropShadow dx="0" dy="18" stdDeviation="20" flood-color="#000000" flood-opacity="0.5" />
+    </filter>
+  </defs>
+
+  <!-- Studio Backdrop -->
+  <rect width="1200" height="750" fill="url(#bgGrad)" />
+
+  <!-- LEFT TERMINAL WINDOW: rag_assistant.py -->
+  <g filter="url(#winShadow)" transform="translate(46, 125)">
+    <rect width="535" height="500" rx="14" fill="url(#winBg)" stroke="#ffffff" stroke-opacity="0.08" stroke-width="1.5" />
+    <path d="M 0 14 Q 0 0 14 0 L 521 0 Q 535 0 535 14 L 535 46 L 0 46 Z" fill="#090e17" />
+    <line x1="0" y1="46" x2="535" y2="46" stroke="#ffffff" stroke-opacity="0.06" />
+
+    <!-- macOS Traffic Lights -->
+    <circle cx="26" cy="23" r="7.5" fill="#ff5f56" />
+    <circle cx="50" cy="23" r="7.5" fill="#ffbd2e" />
+    <circle cx="74" cy="23" r="7.5" fill="#27c93f" />
+    <text x="106" y="28" fill="#cbd5e1" font-family="JetBrains Mono, Consolas, monospace" font-size="14" font-weight="500">rag_assistant.py — Foundry Local</text>
+
+    <!-- Terminal Body -->
+    <g font-family="JetBrains Mono, Consolas, monospace" font-size="13.5">
+      <text x="26" y="84" fill="#94a3b8">=============================================</text>
+      <text x="64" y="108" fill="#f8fafc" font-weight="600">OFFLINE LOCAL RAG ASSISTANT v1.0</text>
+      <text x="26" y="132" fill="#94a3b8">=============================================</text>
+
+      <text x="26" y="166" fill="#38bdf8">[RUNTIME]</text>
+      <text x="115" y="166" fill="#e2e8f0">Microsoft Foundry Local (ONNX)</text>
+
+      <text x="26" y="194" fill="#38bdf8">[MODEL]</text>
+      <text x="115" y="194" fill="#34d399">phi-3.5-mini-instruct (int4)</text>
+
+      <text x="26" y="222" fill="#38bdf8">[INDEX]</text>
+      <text x="115" y="222" fill="#e2e8f0">Local Vector Store • 184 Chunks</text>
+
+      <text x="26" y="250" fill="#38bdf8">[NETWORK]</text>
+      <text x="115" y="250" fill="#fbbf24">100% Offline (Air-Gapped Mode)</text>
+
+      <text x="26" y="282" fill="#64748b">---------------------------------------------</text>
+
+      <text x="26" y="314" fill="#f87171">1.</text>
+      <text x="52" y="314" fill="#f1f5f9">Ingest Local Documents (PDF / MD / TXT)</text>
+
+      <text x="26" y="342" fill="#f87171">2.</text>
+      <text x="52" y="342" fill="#f1f5f9">Ask Question (Semantic RAG Retrieval)</text>
+
+      <text x="26" y="370" fill="#f87171">3.</text>
+      <text x="52" y="370" fill="#f1f5f9">Inspect Retrieved Context &amp; Citations</text>
+
+      <text x="26" y="398" fill="#f87171">4.</text>
+      <text x="52" y="398" fill="#f1f5f9">Switch Local LLM Endpoint</text>
+
+      <text x="26" y="430" fill="#94a3b8">=============================================</text>
+      <text x="26" y="462" fill="#34d399">&gt; Query:</text>
+      <text x="100" y="462" fill="#f8fafc">"How does local chunk indexing work?"</text>
+    </g>
+  </g>
+
+  <!-- RIGHT TERMINAL WINDOW: retrieval_output -->
+  <g filter="url(#winShadow)" transform="translate(619, 125)">
+    <rect width="535" height="500" rx="14" fill="url(#winBg)" stroke="#ffffff" stroke-opacity="0.08" stroke-width="1.5" />
+    <path d="M 0 14 Q 0 0 14 0 L 521 0 Q 535 0 535 14 L 535 46 L 0 46 Z" fill="#090e17" />
+    <line x1="0" y1="46" x2="535" y2="46" stroke="#ffffff" stroke-opacity="0.06" />
+
+    <!-- macOS Traffic Lights -->
+    <circle cx="26" cy="23" r="7.5" fill="#ff5f56" />
+    <circle cx="50" cy="23" r="7.5" fill="#ffbd2e" />
+    <circle cx="74" cy="23" r="7.5" fill="#27c93f" />
+    <text x="106" y="28" fill="#cbd5e1" font-family="JetBrains Mono, Consolas, monospace" font-size="14" font-weight="500">context_retriever.py</text>
+
+    <!-- Terminal Body -->
+    <g font-family="JetBrains Mono, Consolas, monospace" font-size="13.5">
+      <text x="26" y="84" fill="#94a3b8">=============================================</text>
+      <text x="72" y="108" fill="#f8fafc" font-weight="600">RAG CONTEXT &amp; LOCAL RESPONSE</text>
+      <text x="26" y="132" fill="#94a3b8">=============================================</text>
+
+      <text x="26" y="164" fill="#94a3b8">Top-K Matches</text>
+      <text x="142" y="164" fill="#64748b">(Cosine Similarity &gt; 0.82):</text>
+
+      <text x="26" y="196" fill="#34d399">[0.94]</text>
+      <text x="84" y="196" fill="#e2e8f0">docs/architecture_spec.pdf (Chunk #14)</text>
+
+      <text x="26" y="224" fill="#34d399">[0.89]</text>
+      <text x="84" y="224" fill="#e2e8f0">notes/rag_pipeline.md (Chunk #06)</text>
+
+      <text x="26" y="256" fill="#64748b">---------------------------------------------</text>
+
+      <text x="26" y="288" fill="#38bdf8">[FOUNDRY LOCAL RESPONSE]:</text>
+
+      <text x="26" y="320" fill="#f1f5f9">Documents are split into overlapping tokens,</text>
+      <text x="26" y="346" fill="#f1f5f9">embedded locally into dense vectors, and</text>
+      <text x="26" y="372" fill="#f1f5f9">matched via cosine similarity before being</text>
+      <text x="26" y="398" fill="#f1f5f9">passed to the offline Foundry LLM context.</text>
+
+      <text x="26" y="430" fill="#94a3b8">=============================================</text>
+      <text x="26" y="462" fill="#94a3b8">Latency:</text>
+      <text x="98" y="462" fill="#34d399">42ms retrieval</text>
+      <text x="225" y="462" fill="#64748b">|</text>
+      <text x="245" y="462" fill="#38bdf8">Sources verified: 2/2</text>
+    </g>
+  </g>
+</svg>

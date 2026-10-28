@@ -47,6 +47,21 @@ export const projectsList = [
     category: 'web',
   },
   {
+    id: 'microsoft-rag',
+    titleKey: 'projects.microsoft_rag',
+    descriptionKey: 'projects.microsoft_ragDesc',
+    tagKeys: [
+      'projects.tags.Python',
+      'projects.tags.RAG',
+      'projects.tags.LocalAI',
+    ],
+    github: 'https://github.com/yigitardakidiman/microsoft-rag',
+    image: '/img/microsoft-rag.svg',
+    isOpenSource: true,
+    featured: false,
+    category: 'ai',
+  },
+  {
     id: 'kidimusic-generator',
     titleKey: 'projects.kidimusic_generator',
     descriptionKey: 'projects.kidimusic_generatorDesc',
@@ -96,4 +111,37 @@ export function getProjects(t, { featuredOnly = false } = {}) {
     featured: project.featured,
     category: project.category,
   }));
+}
+
+export const knowledgeBaseList = [
+  {
+    id: 'embedded-101',
+    badgeKey: 'projects.badges.educationArchive',
+    titleKey: 'projects.knowledgeBase.embedded101.title',
+    descriptionKey: 'projects.knowledgeBase.embedded101.desc',
+    modulesKey: 'projects.knowledgeBase.embedded101.modules',
+    github: 'https://github.com/yigitardakidiman/embedded101',
+  },
+  {
+    id: 'ceng215-codes',
+    badgeKey: 'projects.badges.courseArchive',
+    titleKey: 'projects.knowledgeBase.ceng215.title',
+    descriptionKey: 'projects.knowledgeBase.ceng215.desc',
+    modulesKey: 'projects.knowledgeBase.ceng215.modules',
+    github: 'https://github.com/yigitardakidiman/CENG215_codes',
+  },
+];
+
+export function getKnowledgeBase(t) {
+  return knowledgeBaseList.map((item) => {
+    const rawModules = t(item.modulesKey, { returnObjects: true });
+    return {
+      id: item.id,
+      badge: t(item.badgeKey),
+      title: t(item.titleKey),
+      description: t(item.descriptionKey),
+      modules: Array.isArray(rawModules) ? rawModules : [],
+      github: item.github,
+    };
+  });
 }

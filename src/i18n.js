@@ -72,6 +72,8 @@ const resources = {
         "embedded_systems_labDesc": "Comprehensive multi-architecture embedded systems engineering lab & portfolio covering Bare-Metal, FreeRTOS, Embedded Linux, and FPGA across 11 dev boards.",
         "volinor": "Volinor Defense Website",
         "volinorDesc": "Corporate web platform built for Volinor Defense featuring React, Three.js 3D model visualization, and Django REST API integration.",
+        "microsoft_rag": "Offline Local RAG Assistant",
+        "microsoft_ragDesc": "An offline question-answering assistant built with Python, Microsoft Foundry Local, and the RAG pattern for local document retrieval without an internet connection.",
         "kidimusic_generator": "KıdıMusic Generator",
         "kidimusic_generatorDesc": "A web application that generates custom music tracks from text prompts and allows easy audio export.",
         "gitfetch_generator": "GitFetch README Generator",
@@ -96,10 +98,58 @@ const resources = {
           "EmbeddedSystems": "Embedded Systems",
           "FreeRTOS": "FreeRTOS",
           "BareMetal": "Bare-Metal",
-          "FPGA": "FPGA"
+          "FPGA": "FPGA",
+          "RAG": "RAG",
+          "LocalAI": "Local AI"
         },
         "badges": {
-          "openSource": "Open Source"
+          "openSource": "Open Source",
+          "educationArchive": "Educational Archive • 12 Modules",
+          "courseArchive": "University Coursework • CENG 215"
+        },
+        "folders": {
+          "close": "Close Folder",
+          "embedded": {
+            "title": "Embedded Systems",
+            "desc": "Microcontroller architectures, Bare-Metal C, FreeRTOS, and hardware engineering works."
+          },
+          "software": {
+            "title": "Web & Software",
+            "desc": "Corporate platforms, end-to-end web products, and core software applications."
+          },
+          "guides": {
+            "title": "Guides & Notes",
+            "desc": "Open-source educational archives and structured lecture notes on engineering fundamentals."
+          }
+        },
+        "knowledgeBase": {
+          "heading": "Open Source Guides & Lecture Notes",
+          "subtitle": "Structured technical documentation, curriculum notes, and engineering study archives.",
+          "exploreBtn": "Read Notes",
+          "embedded101": {
+            "title": "Embedded 101: Hardware & Embedded Software Fundamentals",
+            "desc": "Step-by-step educational archive starting from electronics and logic gates to bare-metal Embedded C, microcontroller architecture, communication protocols (UART, I2C, SPI), interrupts, and datasheet analysis.",
+            "modules": [
+              "01. Bits & Logic Gates",
+              "02. Electrical Signals",
+              "03. Embedded C & Algorithms",
+              "04. MCU Architecture",
+              "05. UART • I2C • SPI",
+              "06. Pointers & Interrupts",
+              "07. Timers & Datasheet Debug"
+            ]
+          },
+          "ceng215": {
+            "title": "CENG 215: Object-Oriented Programming & Course Lab Archive",
+            "desc": "Structured collection of university coursework, laboratory implementations, and object-oriented programming (OOP) exercises developed for the CENG 215 curriculum.",
+            "modules": [
+              "01. Classes & Objects",
+              "02. Encapsulation & Abstraction",
+              "03. Inheritance & Polymorphism",
+              "04. Interfaces & Exception Handling",
+              "05. Lab & Algorithm Solutions"
+            ]
+          }
         }
       },
       "contact": {
@@ -268,6 +318,8 @@ const resources = {
         "embedded_systems_labDesc": "11 farklı geliştirme kartı üzerinde Bare-Metal, FreeRTOS, Gömülü Linux ve FPGA mimarilerini kapsayan kapsamlı uygulamalı gömülü sistemler laboratuvarı ve portföyü.",
         "volinor": "Volinor Savunma Web Sitesi",
         "volinorDesc": "Volinor Savunma ve Teknoloji için React, Three.js ve Django REST API entegrasyonuyla geliştirilmiş 3D model destekli kurumsal web platformu.",
+        "microsoft_rag": "Offline Local RAG Asistanı",
+        "microsoft_ragDesc": "Microsoft Foundry Local ve RAG mimarisi kullanılarak, internet bağlantısı olmadan yerel dokümanlar üzerinden soru-cevap yapabilen çevrimdışı yapay zeka asistanı.",
         "kidimusic_generator": "KıdıMusic Generator",
         "kidimusic_generatorDesc": "Yapay zeka yönlendirmeleri (prompt) ile özgün müzik parçaları oluşturan ve ses dosyalarını dışa aktaran web uygulaması.",
         "gitfetch_generator": "GitFetch README Generator",
@@ -292,10 +344,58 @@ const resources = {
           "EmbeddedSystems": "Gömülü Sistemler",
           "FreeRTOS": "FreeRTOS",
           "BareMetal": "Bare-Metal",
-          "FPGA": "FPGA"
+          "FPGA": "FPGA",
+          "RAG": "RAG",
+          "LocalAI": "Yerel Yapay Zeka"
         },
         "badges": {
-          "openSource": "Açık Kaynak"
+          "openSource": "Açık Kaynak",
+          "educationArchive": "Eğitim Arşivi • 12 Modül",
+          "courseArchive": "Ders & Lab Arşivi • CENG 215"
+        },
+        "folders": {
+          "close": "Klasörü Kapat",
+          "embedded": {
+            "title": "Gömülü Sistemler",
+            "desc": "Mikrodenetleyici mimarileri, Bare-Metal C, FreeRTOS ve donanım mühendisliği çalışmaları."
+          },
+          "software": {
+            "title": "Web & Yazılım",
+            "desc": "Kurumsal platformlar, fikirden yayına geliştirdiğim web ürünleri ve yazılım uygulamaları."
+          },
+          "guides": {
+            "title": "Rehberler & Notlar",
+            "desc": "Mühendislik ve gömülü yazılım temellerini adım adım belgeleyen açık kaynak eğitim arşivleri."
+          }
+        },
+        "knowledgeBase": {
+          "heading": "Açık Kaynak Rehberler & Ders Notları",
+          "subtitle": "Mühendislik temellerini adım adım belgelediğim yapılandırılmış teknik dokümantasyon ve ders arşivleri.",
+          "exploreBtn": "Notları İncele",
+          "embedded101": {
+            "title": "Embedded 101: Gömülü Yazılım ve Donanım Temelleri",
+            "desc": "Elektrik-elektronik ve programlama temellerinden başlayarak mikrodenetleyici mimarisi, haberleşme protokolleri (UART, I2C, SPI), kesmeler (interrupt) ve güvenli gömülü C geliştirme sürecini adım adım belgeleyen kapsamlı eğitim arşivi.",
+            "modules": [
+              "01. Bit, Byte & Lojik Kapılar",
+              "02. Elektriksel Sinyaller",
+              "03. Gömülü C & Algoritma",
+              "04. Mikrodenetleyici Mimarisi",
+              "05. UART • I2C • SPI",
+              "06. Pointer, Struct & Kesmeler",
+              "07. Timer & Datasheet Okuma"
+            ]
+          },
+          "ceng215": {
+            "title": "CENG 215: Nesneye Dayalı Programlama & Ders Kod Arşivi",
+            "desc": "CENG 215 müfredatı kapsamında geliştirilen nesne yönelimli programlama (OOP) uygulamalarını, laboratuvar çözümlerini ve algoritma örneklerini içeren akademik kod arşivi.",
+            "modules": [
+              "01. Sınıflar & Nesneler",
+              "02. Kapsülleme & Soyutlama",
+              "03. Kalıtım & Çok Biçimlilik",
+              "04. Arayüzler & Hata Yönetimi",
+              "05. Lab & Algoritma Çözümleri"
+            ]
+          }
         }
       },
       "contact": {
