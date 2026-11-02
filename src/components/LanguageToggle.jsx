@@ -33,13 +33,13 @@ export default function LanguageToggle() {
 
   return (
     <motion.button
-      whileHover={{ scale: 1.1 }}
-      whileTap={{ scale: 0.9 }}
+      whileHover={{ scale: 1.05 }}
+      whileTap={{ scale: 0.95 }}
       onClick={toggleLanguage}
-      className="flex items-center gap-2 p-2 rounded-full bg-secondary text-textMain hover:bg-brand hover:text-white transition-colors uppercase font-bold text-sm cursor-pointer"
+      className="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-full bg-white/[0.04] hover:bg-white/[0.08] border border-white/10 hover:border-brand/40 text-textMain transition-all uppercase font-mono font-semibold text-xs cursor-pointer"
       aria-label="Toggle Language"
     >
-      <Globe size={18} />
+      <Globe size={14} className="text-brand shrink-0" />
       <span>{newLang}</span>
     </motion.button>
   );

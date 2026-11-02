@@ -7,6 +7,7 @@ import {
   Home,
   User,
   FolderGit2,
+  BookOpen,
   Image as ImageIcon,
   Mail,
   Link2,
@@ -87,6 +88,10 @@ export default function CommandPalette() {
           navigate(`/${lang}/projects`);
           closePalette();
           break;
+        case 'nav-blog':
+          navigate(`/${lang}/blog`);
+          closePalette();
+          break;
         case 'nav-gallery':
           navigate(`/${lang}/gallery`);
           closePalette();
@@ -156,6 +161,13 @@ export default function CommandPalette() {
         label: t('nav.projects'),
         keywords: 'projects projeler github open source',
         icon: FolderGit2,
+      },
+      {
+        id: 'nav-blog',
+        section: t('commandPalette.sections.navigation'),
+        label: t('nav.blog'),
+        keywords: 'blog yazilar makaleler posts articles stm32 freertos c web',
+        icon: BookOpen,
       },
       {
         id: 'nav-gallery',

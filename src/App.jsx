@@ -12,6 +12,7 @@ const About = lazy(() => import('./pages/About'));
 const Projects = lazy(() => import('./pages/Projects'));
 const Gallery = lazy(() => import('./pages/Gallery'));
 const Contact = lazy(() => import('./pages/Contact'));
+const Blog = lazy(() => import('./pages/Blog'));
 const Links = lazy(() => import('./pages/Links'));
 
 const SUPPORTED_LANGS = ['tr', 'en'];
@@ -103,6 +104,8 @@ function App() {
           {/* Legacy / Direct paths without lang prefix redirect */}
           <Route path="/about" element={<LegacyRedirect to="about" />} />
           <Route path="/projects" element={<LegacyRedirect to="projects" />} />
+          <Route path="/blog" element={<LegacyRedirect to="blog" />} />
+          <Route path="/notes" element={<LegacyRedirect to="blog" />} />
           <Route path="/gallery" element={<LegacyRedirect to="gallery" />} />
           <Route path="/contact" element={<LegacyRedirect to="contact" />} />
 
@@ -125,6 +128,15 @@ function App() {
                 </div>
               }
             />
+            <Route
+              path="blog"
+              element={
+                <div className="max-w-6xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6">
+                  <Blog />
+                </div>
+              }
+            />
+            <Route path="notes" element={<Navigate to="../blog" replace relative="path" />} />
             <Route path="gallery" element={<Gallery />} />
             <Route
               path="contact"

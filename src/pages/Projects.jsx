@@ -1,7 +1,8 @@
-import { useState, useRef, useEffect } from 'react';
+import { useRef, useEffect, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useSearchParams } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
-import { Cpu, Layers, BookOpen, ArrowUpRight, X, FolderOpen } from 'lucide-react';
+import { Cpu, Layers, BookOpen, ArrowUpRight, X } from 'lucide-react';
 import { FaGithub } from 'react-icons/fa';
 import { useLenis } from 'lenis/react';
 import Folder from '../components/Folder';
@@ -10,12 +11,36 @@ import GitHubLiveActivity from '../components/GitHubLiveActivity';
 import SEO from '../components/SEO';
 import { getProjects, getKnowledgeBase } from '../data/projectsData';
 
+const VALID_FOLDERS = ['embedded', 'software', 'guides'];
+
 export default function Projects() {
   const { t } = useTranslation();
-  const [activeFolder, setActiveFolder] = useState(null);
+  const [searchParams, setSearchParams] = useSearchParams();
   const contentRef = useRef(null);
   const prevFolderRef = useRef(null);
   const lenis = useLenis();
+
+  // Derive active folder directly from URL ?folder=...
+  const folderParam = searchParams.get('folder');
+  const activeFolder = VALID_FOLDERS.includes(folderParam) ? folderParam : null;
+
+  const setActiveFolder = useCallback(
+    (folderId) => {
+      setSearchParams(
+        (prev) => {
+          const next = new URLSearchParams(prev);
+          if (folderId && VALID_FOLDERS.includes(folderId)) {
+            next.set('folder', folderId);
+          } else {
+            next.delete('folder');
+          }
+          return next;
+        },
+        { replace: false }
+      );
+    },
+    [setSearchParams]
+  );
 
   useEffect(() => {
     const wasOpen = prevFolderRef.current !== null;
@@ -116,9 +141,12 @@ export default function Projects() {
     },
   ];
 
-  const handleFolderToggle = (folderId) => {
-    setActiveFolder((prev) => (prev === folderId ? null : folderId));
-  };
+  const handleFolderToggle = useCallback(
+    (folderId) => {
+      setActiveFolder(activeFolder === folderId ? null : folderId);
+    },
+    [activeFolder, setActiveFolder]
+  );
 
   const activeFolderObj = folders.find((f) => f.id === activeFolder);
 

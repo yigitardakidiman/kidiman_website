@@ -33,8 +33,36 @@ const resources = {
         "home": "Home",
         "about": "About",
         "projects": "Projects",
+        "blog": "Blog",
         "gallery": "Gallery",
         "contact": "Contact"
+      },
+      "blog": {
+        "badge": "Blog & Articles",
+        "heading": "Blog",
+        "subtitle": "Articles, insights, and engineering notes on embedded systems, software architecture, and modern web.",
+        "evergreenLabel": "Blog",
+        "searchPlaceholder": "Search articles by title or tag...",
+        "readCta": "Read Article",
+        "noResults": "No articles found matching your criteria.",
+        "resetFilter": "Reset filters",
+        "sectionContext": "Problem & Context",
+        "highlightLabel": "Key Takeaway",
+        "copyCode": "Copy Code",
+        "copied": "Copied!",
+        "sectionTakeaways": "Key Takeaways",
+        "closeModal": "Close",
+        "comingSoonBadge": "Coming Soon",
+        "comingSoonTitle": "Blog Posts Coming Soon",
+        "comingSoonSubtitle": "Articles on software engineering, embedded systems, and technology are currently in the works.",
+        "exploreProjects": "Explore Projects",
+        "backHome": "Back to Home",
+        "categories": {
+          "all": "All Posts",
+          "embedded": "Embedded & IoT",
+          "systems": "Systems & C",
+          "web": "Web & 3D"
+        }
       },
       "gallery": {
         "heading": "Gallery",
@@ -244,6 +272,11 @@ const resources = {
           "title": "Contact & Connect | Yiğit Arda Kıdıman",
           "description": "Get in touch with Yiğit Arda Kıdıman for freelance work, software engineering collaborations, inquiries, or social networking via LinkedIn, GitHub, or Email.",
           "keywords": "Contact Yiğit Arda Kıdıman, Email, LinkedIn, Instagram, Hire Software Developer"
+        },
+        "blog": {
+          "title": "Blog & Articles | Yiğit Arda Kıdıman",
+          "description": "Articles, insights, and engineering notes on embedded systems, software architecture, and modern web by Yiğit Arda Kıdıman.",
+          "keywords": "Yiğit Arda Kıdıman Blog, Software Engineering Blog, STM32, Embedded Systems, FreeRTOS, React, Three.js, Articles"
         }
       }
     }
@@ -279,8 +312,36 @@ const resources = {
         "home": "Ana Sayfa",
         "about": "Hakkımda",
         "projects": "Projeler",
+        "blog": "Blog",
         "gallery": "Galeri",
         "contact": "İletişim"
+      },
+      "blog": {
+        "badge": "Blog & Makaleler",
+        "heading": "Blog",
+        "subtitle": "Gömülü sistemler, yazılım mimarileri ve modern teknoloji üzerine yazılar, deneyimler ve rehberler.",
+        "evergreenLabel": "Blog",
+        "searchPlaceholder": "Başlık veya etikete göre ara...",
+        "readCta": "Yazıyı Oku",
+        "noResults": "Aramanızla eşleşen bir yazı bulunamadı.",
+        "resetFilter": "Filtreleri Sıfırla",
+        "sectionContext": "Problem & Mimari Çözüm",
+        "highlightLabel": "Kritik Püf Noktası",
+        "copyCode": "Kodu Kopyala",
+        "copied": "Kopyalandı!",
+        "sectionTakeaways": "Mühendislik Çıkarımları",
+        "closeModal": "Kapat",
+        "comingSoonBadge": "Çok Yakında",
+        "comingSoonTitle": "Blog Yazıları Çok Yakında",
+        "comingSoonSubtitle": "Yazılım mühendisliği, gömülü sistemler ve teknoloji üzerine yazılar ve incelemeler çok yakında burada olacak.",
+        "exploreProjects": "Projeleri İncele",
+        "backHome": "Ana Sayfaya Dön",
+        "categories": {
+          "all": "Tüm Yazılar",
+          "embedded": "Gömülü Sistemler",
+          "systems": "Düşük Seviye & C",
+          "web": "Web & 3D"
+        }
       },
       "gallery": {
         "heading": "Galeri",
@@ -490,6 +551,11 @@ const resources = {
           "title": "İletişim & Bağlantılar | Yiğit Arda Kıdıman",
           "description": "İş birlikleri, projeler, sorularınız veya sosyal medya iletişimi için Yiğit Arda Kıdıman ile LinkedIn, GitHub, Instagram veya E-posta üzerinden iletişime geçin.",
           "keywords": "Yiğit Arda Kıdıman İletişim, E-posta, LinkedIn, Instagram, Yazılımcı İletişim"
+        },
+        "blog": {
+          "title": "Blog & Yazılar | Yiğit Arda Kıdıman",
+          "description": "Yiğit Arda Kıdıman'ın yazılım mühendisliği, gömülü sistemler ve teknoloji üzerine yazdığı makale ve yazılar.",
+          "keywords": "Yiğit Arda Kıdıman Blog, Yazılım Blogu, Gömülü Sistemler, FreeRTOS, STM32, React, Three.js, Makaleler"
         }
       }
     }

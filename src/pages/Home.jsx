@@ -42,7 +42,7 @@ export default function Home() {
         path=""
       />
       {/* 1. HERO SECTION */}
-      <section className="w-full min-h-[calc(100vh-4rem)] flex flex-col md:flex-row items-center justify-center relative px-4 md:px-8 overflow-hidden">
+      <section className="w-full min-h-[calc(100vh-4rem)] flex items-center justify-center relative overflow-hidden">
         {/* 3D Lanyard Component */}
         <div className="absolute inset-0 w-full h-full z-0">
           <CanvasErrorBoundary>
@@ -58,25 +58,28 @@ export default function Home() {
           </CanvasErrorBoundary>
         </div>
 
-        {/* Hero Content */}
-        <div className="w-full md:w-1/2 md:ml-auto flex flex-col items-center md:items-start text-center md:text-left space-y-6 z-10 px-4 pointer-events-none mb-auto mt-28 md:mb-0 md:mt-0">
-          <motion.h1
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5 }}
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black tracking-tight text-textMain pointer-events-auto"
-          >
-            {t('home.heading')}
-          </motion.h1>
+        {/* Hero Content Grid - Aligned with max-w-6xl */}
+        <div className="max-w-6xl w-full mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flex flex-col md:flex-row items-center justify-between min-h-[calc(100vh-4rem)] pointer-events-none">
+          <div className="hidden md:block md:w-1/2 pointer-events-none" />
+          <div className="w-full md:w-1/2 flex flex-col items-center md:items-start text-center md:text-left space-y-6 pointer-events-none mb-auto mt-28 md:mb-0 md:mt-0">
+            <motion.h1
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5 }}
+              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black tracking-tight text-textMain pointer-events-auto"
+            >
+              {t('home.heading')}
+            </motion.h1>
 
-          <motion.p
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="text-lg sm:text-xl md:text-2xl text-textMuted max-w-2xl pointer-events-auto font-light"
-          >
-            {t('home.subtitle')}
-          </motion.p>
+            <motion.p
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="text-lg sm:text-xl md:text-2xl text-textMuted max-w-2xl pointer-events-auto font-light"
+            >
+              {t('home.subtitle')}
+            </motion.p>
+          </div>
         </div>
       </section>
 
