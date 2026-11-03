@@ -60,8 +60,8 @@ export default function Navbar() {
                 <Link
                   key={link.path}
                   to={link.path}
-                  className={`relative px-3.5 py-1.5 rounded-full text-xs font-semibold transition-colors duration-200 ${
-                    isActive ? 'text-white' : 'text-zinc-400 hover:text-zinc-200'
+                  className={`relative px-3.5 py-1.5 rounded-full text-[13px] font-medium transition-colors duration-200 ${
+                    isActive ? 'text-white font-semibold' : 'text-zinc-400 hover:text-zinc-100'
                   }`}
                 >
                   {isActive && (
@@ -78,16 +78,16 @@ export default function Navbar() {
           </nav>
 
           {/* 3. RIGHT: ACTIONS & CONTROLS (Desktop) */}
-          <div className="hidden md:flex items-center gap-2.5">
+          <div className="hidden md:flex items-center gap-2">
             <button
               type="button"
               onClick={triggerCommandPalette}
-              className="inline-flex items-center gap-2 px-2.5 py-1.5 rounded-full bg-white/[0.03] hover:bg-white/[0.08] border border-white/10 hover:border-brand/40 text-xs text-zinc-400 hover:text-white transition-all cursor-pointer"
+              className="inline-flex items-center gap-2 px-2.5 py-1.5 rounded-full bg-white/[0.03] hover:bg-white/[0.08] border border-white/10 hover:border-brand/40 text-[12px] text-zinc-400 hover:text-white transition-all cursor-pointer font-medium"
               aria-label="Open Command Palette"
               title="Command Palette (Ctrl + K)"
             >
               <Search size={13} className="text-brand" />
-              <kbd className="font-mono text-[10px] bg-black/40 px-1.5 py-0.5 rounded border border-white/10 text-zinc-400">
+              <kbd className="font-mono text-[10.5px] bg-black/40 px-1.5 py-0.5 rounded border border-white/10 text-zinc-400">
                 Ctrl K
               </kbd>
             </button>
@@ -135,7 +135,7 @@ export default function Navbar() {
                     key={link.path}
                     to={link.path}
                     onClick={() => setIsOpen(false)}
-                    className={`flex items-center justify-between px-4 py-2.5 rounded-xl text-sm font-medium transition-all ${
+                    className={`flex items-center justify-between px-4 py-2.5 rounded-xl text-[15px] font-medium transition-all ${
                       isActive
                         ? 'bg-brand text-white font-semibold shadow-md'
                         : 'text-zinc-300 hover:text-white hover:bg-white/[0.06]'
