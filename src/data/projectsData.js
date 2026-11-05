@@ -86,7 +86,7 @@ export const projectsList = [
       'projects.tags.OOP',
       'projects.tags.DataStructures',
     ],
-    github: 'https://github.com/yigitardakidiman/CENG110-Simple-Banking-System',
+    github: 'https://github.com/yigitardakidiman/ceng110-banking-system',
     image: '/img/banking.webp',
     isOpenSource: true,
     featured: false,
@@ -120,7 +120,7 @@ export const knowledgeBaseList = [
     titleKey: 'projects.knowledgeBase.embedded101.title',
     descriptionKey: 'projects.knowledgeBase.embedded101.desc',
     modulesKey: 'projects.knowledgeBase.embedded101.modules',
-    github: 'https://github.com/yigitardakidiman/embedded101',
+    github: 'https://github.com/yigitardakidiman/embedded-systems-101',
   },
   {
     id: 'ceng215-codes',
@@ -128,7 +128,7 @@ export const knowledgeBaseList = [
     titleKey: 'projects.knowledgeBase.ceng215.title',
     descriptionKey: 'projects.knowledgeBase.ceng215.desc',
     modulesKey: 'projects.knowledgeBase.ceng215.modules',
-    github: 'https://github.com/yigitardakidiman/CENG215_codes',
+    github: 'https://github.com/yigitardakidiman/ceng215-oop-csharp',
   },
   {
     id: 'ceng225-codes',
