@@ -124,11 +124,19 @@ export const knowledgeBaseList = [
   },
   {
     id: 'ceng215-codes',
-    badgeKey: 'projects.badges.courseArchive',
+    badgeKey: 'projects.badges.ceng215Archive',
     titleKey: 'projects.knowledgeBase.ceng215.title',
     descriptionKey: 'projects.knowledgeBase.ceng215.desc',
     modulesKey: 'projects.knowledgeBase.ceng215.modules',
     github: 'https://github.com/yigitardakidiman/CENG215_codes',
+  },
+  {
+    id: 'ceng225-codes',
+    badgeKey: 'projects.badges.ceng225Archive',
+    titleKey: 'projects.knowledgeBase.ceng225.title',
+    descriptionKey: 'projects.knowledgeBase.ceng225.desc',
+    modulesKey: 'projects.knowledgeBase.ceng225.modules',
+    github: 'https://github.com/yigitardakidiman/ceng225-data-structures',
   },
 ];
 

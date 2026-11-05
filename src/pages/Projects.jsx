@@ -126,16 +126,16 @@ export default function Projects() {
       color: '#52525b',
       items: [
         {
+          image: '/img/folder-ceng225.jpg',
+          title: 'CENG 225 Codes',
+        },
+        {
           image: '/img/folder-ceng215.jpg',
           title: 'CENG 215 Codes',
         },
         {
           image: '/img/folder-embedded-101.jpg',
           title: 'Embedded 101',
-        },
-        {
-          image: '/img/folder-protocols.jpg',
-          title: '08. Haberleşme',
         },
       ],
     },

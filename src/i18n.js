@@ -133,7 +133,9 @@ const resources = {
         "badges": {
           "openSource": "Open Source",
           "educationArchive": "Educational Archive • 12 Modules",
-          "courseArchive": "University Coursework • CENG 215"
+          "courseArchive": "University Coursework",
+          "ceng215Archive": "University Coursework • CENG 215",
+          "ceng225Archive": "University Coursework • CENG 225"
         },
         "folders": {
           "close": "Close Folder",
@@ -176,6 +178,17 @@ const resources = {
               "03. Inheritance & Polymorphism",
               "04. Interfaces & Exception Handling",
               "05. Lab & Algorithm Solutions"
+            ]
+          },
+          "ceng225": {
+            "title": "CENG 225: Data Structures & Algorithms Lab Archive",
+            "desc": "Academic repository containing laboratory exercises, in-class implementations, and homework assignments developed for the CENG 225 curriculum.",
+            "modules": [
+              "01. Linked Lists, Stacks & Queues",
+              "02. Binary Search Trees & Heaps",
+              "03. Algorithm Complexity (Big-O)",
+              "04. Sorting & Searching",
+              "05. Hashing & Graphs (BFS/DFS)"
             ]
           }
         }
@@ -412,7 +425,9 @@ const resources = {
         "badges": {
           "openSource": "Açık Kaynak",
           "educationArchive": "Eğitim Arşivi • 12 Modül",
-          "courseArchive": "Ders & Lab Arşivi • CENG 215"
+          "courseArchive": "Üniversite Ders Arşivi",
+          "ceng215Archive": "Ders & Lab Arşivi • CENG 215",
+          "ceng225Archive": "Ders & Lab Arşivi • CENG 225"
         },
         "folders": {
           "close": "Klasörü Kapat",
@@ -455,6 +470,17 @@ const resources = {
               "03. Kalıtım & Çok Biçimlilik",
               "04. Arayüzler & Hata Yönetimi",
               "05. Lab & Algoritma Çözümleri"
+            ]
+          },
+          "ceng225": {
+            "title": "CENG 225: Veri Yapıları ve Algoritmalar Kod Arşivi",
+            "desc": "CENG 225 müfredatı kapsamında geliştirilen doğrusal/hiyerarşik veri yapılarını, laboratuvar çözümlerini, algoritma analizlerini ve ödev çalışmalarını içeren akademik kod arşivi.",
+            "modules": [
+              "01. Bağlı Listeler, Yığın & Kuyruk",
+              "02. İkili Arama Ağaçları & Heap",
+              "03. Algoritma Karmaşıklığı (Big-O)",
+              "04. Sıralama & Arama Algoritmaları",
+              "05. Hashing & Graflar (BFS/DFS)"
             ]
           }
         }
